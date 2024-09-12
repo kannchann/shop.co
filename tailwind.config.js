@@ -4,9 +4,17 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#171717",
-        grey: "#6D6D6D",
-        greyLight: "#C7C7C7",
+        primary: {
+          100: "#F2F7FF",
+          700: "#0165FF",
+        },
+        black: {
+          100: "#171717",
+        },
+        grey: {
+          100: "#C7C7C7",
+          200: "#6D6D6D",
+        },
       },
       fontFamily: {
         main: ["Inter", "sans-serif"],

@@ -13,22 +13,20 @@ const LoginSignUpFormWrapper: React.FC<props> = ({
   children,
 }) => {
   return (
-    <section className="">
-      <div className="flex flex-col gap-4 items-center justify-center px-6 py-8 mx-auto min-h-screen lg:py-0">
-        <div className="w-full sm:max-w-md">
-          <div className="p-6 sm:p-8 font-main">
-            <div className="grid justify-center items-center"> 
-            <div className="w-full flex justify-center gap-6">
-            <img src={logo1x} alt="" className="" />
-            </div>
-            <div>
-            <h1 className='font-semibold text-primary text-[28px] leading-8 pb-3'>{title}</h1>
-            <p className="text-base text-grey">{subTitle}</p>
-            </div>
-            </div>
-            {children}
+    <section className="mx-auto flex flex-col items-center justify-center px-4 py-8 lg:py-0">
+      <div className="w-full p-6 font-main sm:max-w-md sm:p-8">
+        <div className="grid items-center justify-center gap-6">
+          <div className="flex w-full justify-center">
+            <img src={logo1x} alt="logo" />
+          </div>
+          <div>
+            <h1 className="pb-3 text-[28px] font-semibold leading-8 text-black-100">
+              {title}
+            </h1>
+            <p className="text-base text-grey-200">{subTitle}</p>
           </div>
         </div>
+        <div className="mt-6 grid gap-5">{children}</div>
       </div>
     </section>
   );
