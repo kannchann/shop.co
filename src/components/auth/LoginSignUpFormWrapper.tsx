@@ -19,14 +19,14 @@ const LoginSignUpFormWrapper: React.FC<props> = ({
           <div className="flex w-full justify-center">
             <img src={logo1x} alt="logo" />
           </div>
-          <div>
+          <div className="text-center">
             <h1 className="pb-3 text-[28px] font-semibold leading-8 text-black-100">
               {title}
             </h1>
             <p className="text-base text-grey-200">{subTitle}</p>
           </div>
         </div>
-        <div className="mt-6 grid gap-5">{children}</div>
+        <div>{children}</div>
       </div>
     </section>
   );

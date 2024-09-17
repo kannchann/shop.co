@@ -3,10 +3,9 @@ import { Link } from "react-router-dom"; // Import Link from React Router DOM
 
 // Define button variants and sizes for flexibility
 const variantStyles = {
-  primary:
-    "bg-primary-700 text-white hover:bg-primary-100 hover:text-primary-700",
+  primary: "bg-primary-700 text-white hover:bg-blue-900 hover:text-white ",
   secondary:
-    "bg-primary-100 text-primary-700 hover:bg-primary-700 hover:text-white",
+    "bg-primary-100 text-primary-700 hover:bg-blue-900 hover:text-white ",
 };
 
 const sizeStyles = {
@@ -32,7 +31,7 @@ const Button: React.FC<ButtonProps> = ({
   ...rest
 }) => {
   // If 'to' is provided, render as a React Router Link
-  if (to) {
+  if (!!to) {
     return (
       <Link
         to={to}

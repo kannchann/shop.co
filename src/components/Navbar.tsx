@@ -1,5 +1,6 @@
-import { hamburgerIcon, logo1x } from "../assets";
+import { logo1x } from "../assets";
 import { navLinks } from "../utils/constants";
+import MobileNavbar from "./MobileNavbar";
 import Button from "./ui/Button";
 
 type Props = {};
@@ -30,14 +31,22 @@ const Navbar = (props: Props) => {
         <div className="flex items-center space-x-2">
           {/* Hide buttons on tablet and smaller devices */}
           <div className="hidden space-x-2 md:flex">
-            <Button variant="secondary" size="small" buttonText="Log in" />
-            <Button variant="primary" size="small" buttonText="Sign up" />
+            <Button
+              variant="secondary"
+              size="small"
+              to="/login"
+              buttonText="Log in"
+            />
+            <Button
+              variant="primary"
+              size="small"
+              to="signup"
+              buttonText="Sign up"
+            />
           </div>
 
           {/* Show hamburger on medium and smaller devices */}
-          <div className="md:hidden">
-            <img src={hamburgerIcon} alt="menu" />
-          </div>
+          <MobileNavbar />
         </div>
       </div>
     </nav>

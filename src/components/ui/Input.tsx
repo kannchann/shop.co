@@ -1,17 +1,31 @@
 import React, { InputHTMLAttributes, useState } from "react";
 import { eyeIcon, eyeFalseIcon } from "../../assets";
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface InputProps {
   type: "text" | "email" | "password" | "checkbox";
   id: string;
   labelText?: string;
+  value: string;
+  onChange: (value: string) => void;
+  placeholder?: string;
 }
 
-const Input: React.FC<InputProps> = ({ type, id, labelText, ...rest }) => {
+const Input: React.FC<InputProps> = ({
+  type,
+  id,
+  labelText,
+  onChange,
+  value,
+  ...rest
+}) => {
   const [isPwVisible, setIsPwVisible] = useState<boolean>(false);
 
   const togglePasswordVisibility = () => {
     setIsPwVisible(!isPwVisible);
+  };
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    onChange(event.target.value);
   };
 
   return (
@@ -20,13 +34,14 @@ const Input: React.FC<InputProps> = ({ type, id, labelText, ...rest }) => {
         {labelText && (
           <label
             htmlFor={id}
-            className="text-black-100 text-base font-semibold"
+            className="text-base font-semibold text-black-100"
           >
             {labelText}
           </label>
         )}
         <input
-          className="text-grey-200 border-grey-100 rounded-md border p-3 text-base"
+          onChange={handleChange}
+          className="rounded-md border border-grey-100 p-3 text-base text-grey-200"
           type={type === "password" && isPwVisible ? "text" : type}
           id={id}
           {...rest}
