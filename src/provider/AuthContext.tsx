@@ -1,15 +1,19 @@
 import React, { createContext, useState, ReactNode, Children } from "react";
+import { removeToken } from "../utils/token.utils";
 
 interface User {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
+  username: string;
+  image: string;
 }
 
 interface AuthContextType {
   user: User | null;
   isAuthenticated: boolean;
-  // login: (userData: User) => void;
-  // logout: () => void;
+  setCredentials: (userData: User) => void;
+  logout: () => void;
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(
@@ -17,22 +21,24 @@ export const AuthContext = createContext<AuthContextType | undefined>(
 );
 
 const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<User | null>({
-    name: "kanchan",
-    email: "dsadas@dasda.com",
-  });
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
-  // const login = () => {
-  //   setIsAuthenticated(true);
-  // };
+  const setCredentials = (user: User) => {
+    setIsAuthenticated(true);
+    setUser(user);
+  };
 
-  // const logout = () => {
-  //   setIsAuthenticated(false);
-  // };
+  const logout = () => {
+    setIsAuthenticated(false);
+    setUser(null);
+    removeToken();
+  };
 
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated }}>
+    <AuthContext.Provider
+      value={{ user, isAuthenticated, setCredentials, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );

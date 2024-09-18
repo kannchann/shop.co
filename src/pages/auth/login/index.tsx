@@ -2,24 +2,38 @@ import { Link } from "react-router-dom";
 import { LoginSignUpFormWrapper } from "../../../components";
 import Button from "../../../components/ui/Button";
 import Input from "../../../components/ui/Input";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Spinner from "../../../components/ui/Spinner";
+import { setToken } from "../../../utils/token.utils";
+import { useContext } from "react";
+import { AuthContext } from "../../../provider/AuthContext";
 
 // import { Link } from "react-router-dom";
 const Login = () => {
-  const navigate = useNavigate();
+  const userContext = useContext(AuthContext);
 
+  if (!userContext) {
+    throw new Error("somthing went wrong");
+  }
+
+  const { setCredentials, isAuthenticated } = userContext;
+
+  const navigate = useNavigate();
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
-
   const [isLoading, setIsLoading] = useState(false);
-
   const [errors, setErrors] = useState({
     username: "",
     password: "",
   });
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/");
+      return;
+    }
+  }, [isAuthenticated]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -56,10 +70,7 @@ const Login = () => {
       .then((res) => {
         if (res.statusText === "OK") {
           const response = res.data;
-          console.log(response.token);
-          console.log(response.refreshToken);
-          localStorage.setItem("token", response.token);
-          localStorage.setItem("refreshtoken", response.refreshToken);
+          setToken(response.token);
         }
       })
       .then(() => {
@@ -81,7 +92,7 @@ const Login = () => {
         },
       })
       .then((res) => {
-        console.log(res);
+        setCredentials(res.data);
       });
   };
 
