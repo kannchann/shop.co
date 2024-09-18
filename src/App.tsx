@@ -7,6 +7,7 @@ import { AuthProvider } from "./provider/AuthContext";
 import axios from "axios";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import Dashboard from "./pages/protected/dashboard/Dashboard";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: <SignUp />,
+      },
+      {
+        path: "/dashboard",
+        element: <Dashboard />,
       },
       {
         path: "*",

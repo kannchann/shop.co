@@ -40,13 +40,21 @@ const Navbar = (props: Props) => {
 
         <div className="flex items-center space-x-2">
           {isAuthenticated ? (
-            <Button
-              variant="secondary"
-              size="small"
-              to="/login"
-              buttonText="Log out"
-              onClick={logout}
-            />
+            <div className="hidden space-x-2 md:flex">
+              <Button
+                variant="secondary"
+                size="small"
+                to="/login"
+                buttonText="Log out"
+                onClick={logout}
+              />
+              <Button
+                variant="primary"
+                size="small"
+                to="dashboard"
+                buttonText="Go to Dashboard"
+              />
+            </div>
           ) : (
             <div className="hidden space-x-2 md:flex">
               <Button
