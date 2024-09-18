@@ -1,5 +1,6 @@
 import React, { ButtonHTMLAttributes } from "react";
 import { Link } from "react-router-dom"; // Import Link from React Router DOM
+import Spinner from "./Spinner";
 
 // Define button variants and sizes for flexibility
 const variantStyles = {
@@ -20,6 +21,8 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: "small" | "medium" | "large";
   buttonText?: string;
   to?: string; // Use 'to' for routing with React Router DOM
+  isLoading?: boolean;
+  disabled?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -28,17 +31,20 @@ const Button: React.FC<ButtonProps> = ({
   buttonText = "Click Me",
   to,
   className = "",
+  isLoading,
+  disabled,
   ...rest
 }) => {
   // If 'to' is provided, render as a React Router Link
   if (!!to) {
     return (
       <Link
-        to={to}
-        className={`inline-block rounded-md text-center font-semibold transition duration-300 ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}
+        to={disabled ? null : to}
+        className={`inline-block grid justify-center rounded-md font-semibold transition duration-300 ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}
         {...(rest as any)}
       >
         {buttonText}
+        {isLoading ? <Spinner size={40} /> : null}
       </Link>
     );
   }
@@ -46,10 +52,11 @@ const Button: React.FC<ButtonProps> = ({
   // Render as a standard button
   return (
     <button
-      className={`rounded-md font-semibold transition duration-300 ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}
+      className={`grid justify-center rounded-md font-semibold transition duration-300 ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}
+      disabled={disabled}
       {...rest}
     >
-      {buttonText}
+      {isLoading ? <Spinner size={25} /> : buttonText}
     </button>
   );
 };

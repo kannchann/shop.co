@@ -8,6 +8,7 @@ interface InputProps {
   value: string;
   onChange: (value: string) => void;
   placeholder?: string;
+  disabled?: boolean;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -16,6 +17,7 @@ const Input: React.FC<InputProps> = ({
   labelText,
   onChange,
   value,
+  disabled,
   ...rest
 }) => {
   const [isPwVisible, setIsPwVisible] = useState<boolean>(false);
@@ -44,6 +46,7 @@ const Input: React.FC<InputProps> = ({
           className="rounded-md border border-grey-100 p-3 text-base text-grey-200"
           type={type === "password" && isPwVisible ? "text" : type}
           id={id}
+          disabled={disabled}
           {...rest}
         />
         {type === "password" && (

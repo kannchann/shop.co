@@ -3,11 +3,10 @@ import Login from "./pages/auth/login";
 import Home from "./pages/home";
 import SignUp from "./pages/auth/signUp";
 import RootLayout from "./layout/RootLayout";
-
-import { createContext } from "react";
-
-export const MyContext = createContext("");
-
+import { AuthProvider } from "./provider/AuthContext";
+import axios from "axios";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -25,15 +24,36 @@ const router = createBrowserRouter([
         path: "/signup",
         element: <SignUp />,
       },
+      {
+        path: "*",
+        element: <div>404 Not Found</div>,
+      },
     ],
   },
 ]);
 
 const App = () => {
+  // useEffect(() => {
+  //   getUser();
+  //   console.log();
+  // }, []);
+
+  // const getUser = () => {
+  //   axios
+  //     .get("https://dummyjson.com/auth/me", {
+  //       headers: {
+  //         Authorization: `Bearer ${localStorage.getItem("token")}`,
+  //       },
+  //     })
+  //     .then((res) => {
+  //       console.log(res);
+  //     });
+  // };
+
   return (
-    <div>
+    <AuthProvider>
       <RouterProvider router={router} />
-    </div>
+    </AuthProvider>
   );
 };
 

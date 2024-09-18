@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { logo1x } from "../assets";
 import { navLinks } from "../utils/constants";
 import MobileNavbar from "./MobileNavbar";
@@ -14,7 +15,6 @@ const Navbar = (props: Props) => {
             <img src={logo1x} alt="My Image" />
             <p className="text-base font-semibold">Company Name</p>
           </div>
-
           {/* Hide nav links on tablet and smaller devices */}
           <ul className="hidden items-center space-x-3 md:flex">
             {navLinks.map((link) => (
@@ -22,7 +22,7 @@ const Navbar = (props: Props) => {
                 className="text-base font-normal text-black-100"
                 key={link.id}
               >
-                {link.title}
+                <Link to={link.path}> {link.title}</Link>
               </li>
             ))}
           </ul>
