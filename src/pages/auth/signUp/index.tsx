@@ -3,26 +3,28 @@ import { Link } from "react-router-dom";
 import { LoginSignUpFormWrapper } from "../../../components";
 import Input from "../../../components/ui/Input";
 import Button from "../../../components/ui/Button";
+import axios from "axios";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [name, setName] = useState("");
+  const [userName, setUserName] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   // State for error messages
   const [errors, setErrors] = useState({
     email: "",
     password: "",
     confirmPassword: "",
-    name: "",
+    userName: "",
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     // Clear previous errors
-    setErrors({ email: "", password: "", confirmPassword: "", name: "" });
+    setErrors({ email: "", password: "", confirmPassword: "", userName: "" });
 
     // Basic validation checks
     let isValid = true;
@@ -30,11 +32,11 @@ const SignUp = () => {
       email: "",
       password: "",
       confirmPassword: "",
-      name: "",
+      userName: "",
     };
 
-    if (!name) {
-      newErrors.name = "Full name is required.";
+    if (!userName) {
+      newErrors.userName = "username is required.";
       isValid = false;
     }
 
@@ -57,11 +59,35 @@ const SignUp = () => {
     }
 
     if (isValid) {
-      console.log("Sign up submitted:", { name, email, password });
-      // Proceed with signup logic here (e.g., API call)
+      console.log("Sign up submitted:", { userName, email, password });
+      handleNewSignIn(userName, password, email);
     } else {
       setErrors(newErrors);
     }
+  };
+
+  const handleNewSignIn = (
+    userName: string,
+    password: string,
+    email: string,
+  ) => {
+    console.log("Data being sent:", { email, password, username: userName });
+    setIsLoading(true);
+    axios
+      .post(
+        "https://freeapi-app-production-dfcc.up.railway.app/api/v1/users/register",
+        {
+          email: email,
+          password: password,
+          username: userName,
+        },
+      )
+      .then((res) => {
+        console.log(res);
+        // if (res.data.message === "User logged in successfully") {
+
+        // }
+      });
   };
 
   return (
@@ -71,16 +97,6 @@ const SignUp = () => {
     >
       <form onSubmit={handleSubmit} className="mt-4 grid space-y-4">
         <Input
-          labelText="Full Name"
-          id="name"
-          value={name}
-          onChange={setName}
-          type="text"
-          placeholder="Enter your name"
-        />
-        {errors.name && <p className="text-sm text-red-500">{errors.name}</p>}
-
-        <Input
           labelText="Email"
           value={email}
           onChange={setEmail}
@@ -88,8 +104,19 @@ const SignUp = () => {
           type="email"
           placeholder="Enter your email"
         />
-        {errors.email && <p className="text-sm text-red-500">{errors.email}</p>}
 
+        {errors.email && <p className="text-sm text-red-500">{errors.email}</p>}
+        <Input
+          labelText="Username"
+          id="username"
+          value={userName}
+          onChange={setUserName}
+          type="text"
+          placeholder="username"
+        />
+        {errors.userName && (
+          <p className="text-sm text-red-500">{errors.userName}</p>
+        )}
         <Input
           labelText="Password"
           value={password}
@@ -119,6 +146,8 @@ const SignUp = () => {
           variant="primary"
           size="medium"
           buttonText="Sign up"
+          isLoading={isLoading}
+          disabled={isLoading}
         />
       </form>
 

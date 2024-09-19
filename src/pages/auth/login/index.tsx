@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { setToken } from "../../../utils/token.utils";
 import { useContext } from "react";
 import { AuthContext } from "../../../provider/AuthContext";
+import WarningBanner from "../../../components/ui/WarningBanner";
 
 // import { Link } from "react-router-dom";
 const Login = () => {
@@ -23,9 +24,11 @@ const Login = () => {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
   const [errors, setErrors] = useState({
     username: "",
     password: "",
+    message: "",
   });
 
   useEffect(() => {
@@ -38,10 +41,10 @@ const Login = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    setErrors({ username: "", password: "" });
+    setErrors({ username: "", password: "", message: "" });
 
     let isValid = true;
-    const newErrors = { username: "", password: "" };
+    const newErrors = { username: "", password: "", message: "" };
 
     if (!username) {
       newErrors.username = "username is required.";
@@ -63,21 +66,30 @@ const Login = () => {
   const handleNewLogin = (username: string, password: string) => {
     setIsLoading(true);
     axios
-      .post("https://dummyjson.com/auth/login", {
-        username: username,
-        password: password,
-      })
+      .post(
+        "https://freeapi-app-production-dfcc.up.railway.app/api/v1/users/login",
+        {
+          username: username,
+          password: password,
+        },
+      )
       .then((res) => {
-        if (res.statusText === "OK") {
-          const response = res.data;
-          setToken(response.token);
+        console.log(res);
+        if (res.data.message === "User logged in successfully") {
+          const response = res.data.data;
+          setToken(response.accessToken);
         }
       })
       .then(() => {
         getUser();
       })
       .catch((error) => {
-        setErrors(error.response.data.message);
+        console.log(error.response.data.message);
+        setErrors({
+          username: "",
+          password: "",
+          message: error.response.data.message,
+        });
       })
       .finally(() => {
         setIsLoading(false);
@@ -86,11 +98,14 @@ const Login = () => {
 
   const getUser = () => {
     axios
-      .get("https://dummyjson.com/auth/me", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+      .get(
+        "https://freeapi-app-production-dfcc.up.railway.app/api/v1/users/current-user",
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
         },
-      })
+      )
       .then((res) => {
         setCredentials(res.data);
       });
@@ -101,6 +116,7 @@ const Login = () => {
       title="Welcome back!"
       subTitle="Please, login to your accont"
     >
+      {errors.message && <WarningBanner warningText={errors.message} />}
       <form onSubmit={handleSubmit} className="mt-6 grid space-y-5">
         <Input
           labelText="Username"

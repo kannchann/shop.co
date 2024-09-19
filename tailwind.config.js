@@ -15,6 +15,7 @@ export default {
       colors: {
         primary: {
           100: "#F2F7FF",
+          200: "#c8dcfd",
           700: "#0165FF",
         },
         black: {
