@@ -5,7 +5,7 @@ import Input from "../../../components/ui/Input";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { setToken } from "../../../utils/token.utils";
+import { getToken, setToken } from "../../../utils/token.utils";
 import { useContext } from "react";
 import { AuthContext } from "../../../provider/AuthContext";
 import WarningBanner from "../../../components/ui/WarningBanner";
@@ -102,7 +102,7 @@ const Login = () => {
         "https://freeapi-app-production-dfcc.up.railway.app/api/v1/users/current-user",
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            Authorization: `Bearer ${getToken()}`,
           },
         },
       )

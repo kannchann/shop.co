@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { LoginSignUpFormWrapper } from "../../../components";
 import Input from "../../../components/ui/Input";
 import Button from "../../../components/ui/Button";
 import axios from "axios";
+import WarningBanner from "../../../components/ui/WarningBanner";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -12,19 +13,28 @@ const SignUp = () => {
   const [userName, setUserName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
+  const navigate = useNavigate();
+
   // State for error messages
   const [errors, setErrors] = useState({
     email: "",
     password: "",
     confirmPassword: "",
     userName: "",
+    invalid: "",
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     // Clear previous errors
-    setErrors({ email: "", password: "", confirmPassword: "", userName: "" });
+    setErrors({
+      email: "",
+      password: "",
+      confirmPassword: "",
+      userName: "",
+      invalid: "",
+    });
 
     // Basic validation checks
     let isValid = true;
@@ -33,6 +43,7 @@ const SignUp = () => {
       password: "",
       confirmPassword: "",
       userName: "",
+      invalid: "",
     };
 
     if (!userName) {
@@ -71,7 +82,6 @@ const SignUp = () => {
     password: string,
     email: string,
   ) => {
-    console.log("Data being sent:", { email, password, username: userName });
     setIsLoading(true);
     axios
       .post(
@@ -84,9 +94,17 @@ const SignUp = () => {
       )
       .then((res) => {
         console.log(res);
-        // if (res.data.message === "User logged in successfully") {
+        if (res.data.success === true) {
+          navigate("/login");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
 
-        // }
+        setErrors({ ...errors, invalid: error.response.data.message });
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
@@ -95,6 +113,7 @@ const SignUp = () => {
       title="Get started!"
       subTitle="Create your account now"
     >
+      {errors.invalid && <WarningBanner warningText={errors.invalid} />}
       <form onSubmit={handleSubmit} className="mt-4 grid space-y-4">
         <Input
           labelText="Email"
