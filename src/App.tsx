@@ -8,6 +8,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Dashboard from "./pages/protected/dashboard/Dashboard";
+import ProductDetail from "./pages/home/product/productDetail";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard",
         element: <Dashboard />,
+      },
+      {
+        path: "/products/:productID",
+        element: <ProductDetail />,
       },
       {
         path: "*",

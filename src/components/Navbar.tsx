@@ -18,7 +18,7 @@ const Navbar = (props: Props) => {
 
   const { isAuthenticated, logout } = userContext;
   return (
-    <nav className="border-b border-grey-100 px-4 py-[18px] font-main md:px-8 lg:px-20">
+    <nav className="container border-b border-grey-100 py-[18px] font-main">
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-3">
           <div className="flex items-center space-x-1 pr-5">

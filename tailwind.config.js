@@ -2,7 +2,14 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
+    container: {
+      center: true,
+    },
     extend: {
+      fontFamily: {
+        custom1: ["Integral", "sans-serif"],
+        custom2: ["satoshi", "sans-serif"],
+      },
       animation: {
         "spin-slow": "spin 2s linear infinite",
       },
@@ -14,8 +21,9 @@ export default {
       },
       colors: {
         primary: {
-          100: "#F2F7FF",
-          200: "#c8dcfd",
+          100: "#F2F0F1",
+          200: "#F0F0F0",
+          300: "#F0EEED",
           700: "#0165FF",
         },
         black: {
@@ -25,9 +33,6 @@ export default {
           100: "#C7C7C7",
           200: "#6D6D6D",
         },
-      },
-      fontFamily: {
-        main: ["Inter", "sans-serif"],
       },
     },
   },

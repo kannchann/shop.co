@@ -1,5 +1,6 @@
-import { useContext } from "react";
+import { Profiler, useContext } from "react";
 import { AuthContext } from "../../provider/AuthContext";
+import ProductList from "../../components/ProductList";
 
 const Home = () => {
   const userContext = useContext(AuthContext);
@@ -12,8 +13,8 @@ const Home = () => {
 
   return (
     <>
-      <div className="flex h-[calc(100vh-4rem)] items-center justify-center text-5xl">
-        Welcome to home
+      <div className="container flex w-full">
+        <ProductList />
       </div>
     </>
   );
