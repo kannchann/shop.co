@@ -75,31 +75,32 @@ const Product: React.FC = () => {
 
   console.log(product);
   return (
-    <div className="container">
-      <div className="flex flex-col py-20 md:flex-row md:space-x-4">
-        <figure className="bg-primary-300 order-1 max-h-[530px] max-w-[444px] rounded-lg md:order-2">
-          <img
-            src={mainImage}
-            alt=""
-            className="h-full rounded-lg object-contain"
-          />
-        </figure>
-        <div className="order-2 flex md:order-1 md:flex-col md:space-y-7">
-          {product.subImages.slice(0, 3).map((subImg) => (
-            <figure
-              key={subImg._id}
-              className="max-w-[152px] rounded-lg"
-              onClick={() => handleClick(subImg.url)}
-            >
-              <img
-                src={subImg.url}
-                alt="product image"
-                className="rounded-lg object-contain"
-              />
-            </figure>
-          ))}
+    <div className="container py-20">
+      <div className="flex w-full flex-col gap-4 md:flex-row">
+        {/*images div */}
+        <div className="flex w-full flex-col gap-3 lg:w-1/2 lg:flex-row-reverse">
+          <figure className="h-full w-full min-w-[358px] rounded-lg bg-primary-300 md:w-[444px]">
+            <img src={mainImage} alt="" className="rounded-lg object-contain" />
+          </figure>
+
+          <div className="flex gap-3 lg:flex-col">
+            {product.subImages.slice(0, 3).map((subImg) => (
+              <figure
+                key={subImg._id}
+                className="min-h[106px] max-h[167px] min-w-[112px] max-w-[152px] rounded-lg"
+                onClick={() => handleClick(subImg.url)}
+              >
+                <img
+                  src={subImg.url}
+                  alt="product image"
+                  className="rounded-lg object-contain"
+                />
+              </figure>
+            ))}
+          </div>
         </div>
-        <div className="order-3 lg:pl-4">
+
+        <div className="space-y-3">
           <h1 className="font-custom1 text-xl md:text-3xl lg:text-4xl">
             {product.name.toUpperCase()}
           </h1>

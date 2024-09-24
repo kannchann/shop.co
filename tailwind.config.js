@@ -4,6 +4,13 @@ export default {
   theme: {
     container: {
       center: true,
+      padding: {
+        DEFAULT: "1rem",
+        sm: "1rem",
+        lg: "2rem",
+        xl: "3rem",
+        "2xl": "6.5rem",
+      },
     },
     extend: {
       fontFamily: {
@@ -28,6 +35,7 @@ export default {
         },
         black: {
           100: "#171717",
+          700: "#000000",
         },
         grey: {
           100: "#C7C7C7",
