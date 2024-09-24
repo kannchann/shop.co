@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import { logo1x } from "../assets";
+import { useContext } from "react";
+
+import { AuthContext } from "../provider/AuthContext";
 import { navLinks } from "../utils/constants";
 import MobileNavbar from "./MobileNavbar";
 import Button from "./ui/Button";
-
-import { useContext } from "react";
-import { AuthContext } from "../provider/AuthContext";
+import { logo } from "../assets/svgs";
 
 type Props = {};
 
@@ -18,12 +18,11 @@ const Navbar = (props: Props) => {
 
   const { isAuthenticated, logout } = userContext;
   return (
-    <nav className="container border-b border-grey-100 py-[18px] font-main">
-      <div className="flex items-center justify-between">
+    <nav className="border-b border-grey-100">
+      <div className="container flex justify-between py-[18px]">
         <div className="flex items-center space-x-3">
-          <div className="flex items-center space-x-1 pr-5">
-            <img src={logo1x} alt="My Image" />
-            <p className="text-base font-semibold">Company Name</p>
+          <div className=" ">
+            <img src={logo} alt="My Image" />
           </div>
           {/* Hide nav links on tablet and smaller devices */}
           <ul className="hidden items-center space-x-3 md:flex">

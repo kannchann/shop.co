@@ -113,7 +113,7 @@ const Login = () => {
 
   return (
     <LoginSignUpFormWrapper
-      title="Welcome back!"
+      title="Welcome back"
       subTitle="Please, login to your accont"
     >
       {errors.message && <WarningBanner warningText={errors.message} />}
