@@ -4,11 +4,13 @@ import Home from "./pages/home";
 import SignUp from "./pages/auth/signUp";
 import RootLayout from "./layout/RootLayout";
 import { AuthProvider } from "./provider/AuthContext";
-import axios from "axios";
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+// import axios from "axios";
+// import { useEffect } from "react";
+// import { useLocation } from "react-router-dom";
 import Dashboard from "./pages/protected/dashboard/Dashboard";
 import ProductDetail from "./pages/home/product/productDetail";
+import Profile from "./pages/protected/profile/Profile";
+import Orders from "./pages/protected/orders/Orders";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -33,6 +35,14 @@ const router = createBrowserRouter([
       {
         path: "/products/:productID",
         element: <ProductDetail />,
+      },
+      {
+        path: "/profile",
+        element: <Profile />,
+      },
+      {
+        path: "/orders",
+        element: <Orders />,
       },
       {
         path: "*",

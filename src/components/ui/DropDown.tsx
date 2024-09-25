@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 interface DropDownActions {
   label: string;
-  link: string | Function;
+  link?: string;
+  onclick?: () => void;
 }
 type DropDownProps = {
   actions: DropDownActions[];
@@ -11,20 +13,27 @@ type DropDownProps = {
 
 const DropDown: React.FC<DropDownProps> = ({ actions, imgSrc }) => {
   const [showDropDown, setShowDropDown] = useState<boolean>(false);
-  const handleClick = () => setShowDropDown(!showDropDown);
+  const handleClick = () => setShowDropDown((prev) => !prev);
   return (
     <div>
       <button onClick={handleClick}>
         <img src={imgSrc} alt="" />
         {showDropDown && (
-          <div className="absolute right-1 top-9 grid min-w-[150px] justify-start bg-primary-300 py-2 pl-2 pr-7 text-start text-black-100 shadow-sm">
+          <div className="absolute right-1 top-9 grid min-w-[150px] justify-start border border-primary-300 bg-white px-2 py-2 text-start text-black-100 shadow-lg">
             {actions.map((action, index) => (
-              <p
+              <button
+                className="border-b-grey-10 m-0 min-w-[140px] border-b px-[0.88rem] py-[0.375rem] text-sm last:border-b-0 hover:bg-black-700 hover:text-white"
                 key={index}
-                className="m-0 min-w-[140px] border-b border-b-grey-100 px-[0.88rem] py-[0.375rem] last:border-b-0"
+                onClick={() => {
+                  action.onclick ? action.onclick() : null;
+                }}
               >
-                {action.label}
-              </p>
+                {action.link ? (
+                  <Link to={action.link}>{action.label}</Link>
+                ) : (
+                  action.label
+                )}
+              </button>
             ))}
           </div>
         )}

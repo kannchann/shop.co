@@ -24,8 +24,8 @@ const Navbar = (props: Props) => {
     },
     {
       label: "Logout",
-      link: () => {
-        logout;
+      onclick: () => {
+        logout();
       },
     },
   ];
