@@ -4,14 +4,14 @@ import Spinner from "./Spinner";
 
 // Define button variants and sizes for flexibility
 const variantStyles = {
-  primary: "bg-black-700 text-white hover:bg-blue-900 hover:text-white ",
+  primary: "bg-black-700 text-white  hover:opacity-70",
   secondary:
     "bg-primary-100 text-primary-700 hover:bg-blue-900 hover:text-white ",
 };
 
 const sizeStyles = {
-  small: "px-7 py-2.5 text-base",
-  medium: "px-20 py-2.5 text-base",
+  small: "px-7 py-2.5 ",
+  medium: "px-20 py-2.5 ",
   large: "px-36 py-4 ",
 };
 
@@ -51,7 +51,7 @@ const Button: React.FC<ButtonProps> = ({
   // Render as a standard button
   return (
     <button
-      className={`grid justify-center rounded-md py-4 text-base transition duration-300 ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}
+      className={`grid justify-center rounded-full text-base transition duration-300 ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}
       disabled={disabled}
       {...rest}
     >

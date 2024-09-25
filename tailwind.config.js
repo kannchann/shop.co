@@ -14,8 +14,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        custom1: ["Integral", "sans-serif"],
-        custom2: ["satoshi", "sans-serif"],
+        IntegralBold: ["Integral", "sans-serif"],
+        satoshi: ["satoshi", "sans-serif"],
+        satoshiMedium: ["satoshi-medium", "sans-serif"],
       },
       animation: {
         "spin-slow": "spin 2s linear infinite",

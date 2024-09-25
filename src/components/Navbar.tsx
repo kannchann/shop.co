@@ -1,17 +1,34 @@
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 import { AuthContext } from "../provider/AuthContext";
 import { navLinks } from "../utils/constants";
 import MobileNavbar from "./MobileNavbar";
 import Button from "./ui/Button";
-import { logo } from "../assets/svgs";
+import { logo } from "../assets";
+import { accountIcon } from "../assets";
+import DropDown from "./ui/DropDown";
 
 type Props = {};
 
 const Navbar = (props: Props) => {
   const userContext = useContext(AuthContext);
-
+  const action = [
+    {
+      label: "My profile",
+      link: "/profile",
+    },
+    {
+      label: "My Orders",
+      link: "/orders",
+    },
+    {
+      label: "Logout",
+      link: () => {
+        logout;
+      },
+    },
+  ];
   if (!userContext) {
     throw new Error("somthing went wrong");
   }
@@ -39,20 +56,8 @@ const Navbar = (props: Props) => {
 
         <div className="flex items-center space-x-2">
           {isAuthenticated ? (
-            <div className="hidden space-x-2 md:flex">
-              <Button
-                variant="secondary"
-                size="small"
-                to="/login"
-                buttonText="Log out"
-                onClick={logout}
-              />
-              <Button
-                variant="primary"
-                size="small"
-                to="dashboard"
-                buttonText="Go to Dashboard"
-              />
+            <div className="relative hidden space-x-2 md:flex">
+              <DropDown actions={action} imgSrc={accountIcon} />
             </div>
           ) : (
             <div className="hidden space-x-2 md:flex">

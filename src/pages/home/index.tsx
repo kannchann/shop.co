@@ -1,4 +1,4 @@
-import { Profiler, useContext } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthContext";
 import ProductList from "../../components/ProductList";
 
@@ -14,6 +14,7 @@ const Home = () => {
   return (
     <>
       <div className="container flex w-full">
+        {/* {user && <h2>Hi {user?.username}</h2>} */}
         <ProductList />
       </div>
     </>

@@ -1,7 +1,12 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Spinner from "../../../../components/ui/Spinner";
+import ColorRadioButton from "../../../../components/ui/ColorRadioButton";
+import SizeRadioButton from "../../../../components/ui/SizeRadioButton";
+import Button from "../../../../components/ui/Button";
+import AddToCart from "../../../../components/ui/AddToCart";
+import { AuthContext } from "../../../../provider/AuthContext";
 
 interface Product {
   _id: string;
@@ -26,6 +31,14 @@ interface Product {
 }
 
 const Product: React.FC = () => {
+  const userContext = useContext(AuthContext);
+
+  if (!userContext) {
+    throw new Error("somthing went wrong");
+  }
+
+  const { isAuthenticated } = userContext;
+
   const [product, setProduct] = useState<Product | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [mainImage, setMainImage] = useState("");
@@ -100,17 +113,36 @@ const Product: React.FC = () => {
           </div>
         </div>
 
-        <div className="space-y-3">
+        <div className="space-y-2 lg:w-2/3">
           <h1 className="font-custom1 text-xl md:text-3xl lg:text-4xl">
             {product.name.toUpperCase()}
           </h1>
-          <div className="flex space-x-5 text-xl md:text-2xl lg:text-3xl">
+          <div className="flex space-x-5 text-lg font-bold">
             <p>{`$${product.price}`}</p>
-            <p className="opacity-60">only {product.stock} items left</p>
+            <p className="text-red-600 opacity-60">
+              only {product.stock} items left
+            </p>
           </div>
-          <p className="font-custom2 font-black opacity-60">
+          <p className="border-b border-b-grey-100 pb-4 font-custom2 font-black opacity-60">
             {product.description}
           </p>
+          <p>Select Colors</p>
+          <div className="flex space-x-2 border-b border-b-grey-100 pb-4">
+            <ColorRadioButton color="red" />
+            <ColorRadioButton color="red" />
+            <ColorRadioButton color="red" />
+          </div>
+          <p>Choose size</p>
+          <div className="flex space-x-2 border-b border-b-grey-100 pb-4">
+            <SizeRadioButton text="small" />
+            <SizeRadioButton text="medium" />
+            <SizeRadioButton text="large" />
+            <SizeRadioButton text="X-large" />
+          </div>
+          <div className="flex space-x-2">
+            <AddToCart stock={product.stock} />
+            <Button size="large" buttonText="Add to Cart" />
+          </div>
         </div>
       </div>
     </div>

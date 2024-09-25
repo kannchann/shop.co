@@ -16,6 +16,10 @@
   src: url('./assets/fonts/satoshi-custom/Satoshi-Light.otf') format("opentype"); 
 }
 
+@font-face {
+  font-family: 'satoshi-medium';
+  src: url('./assets/fonts/satoshi-custom/Satoshi-Medium.otf') format("opentype");
+}
 
 body{
   font-family: 'satoshi';
