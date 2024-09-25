@@ -43,6 +43,12 @@ const Product: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [mainImage, setMainImage] = useState("");
 
+  const [selectedColor, setSelectedColor] = useState<string>("");
+
+  const handleColorChange = (color: string) => {
+    setSelectedColor(color);
+  };
+
   const { productID } = useParams();
 
   const getProductDetail = () => {
@@ -128,9 +134,14 @@ const Product: React.FC = () => {
           </p>
           <p>Select Colors</p>
           <div className="flex space-x-2 border-b border-b-grey-100 pb-4">
-            <ColorRadioButton color="red" />
-            <ColorRadioButton color="red" />
-            <ColorRadioButton color="red" />
+            {["colorOne", "colorTwo", "color#"].map((color) => (
+              <ColorRadioButton
+                key={color}
+                color={color as "colorOne" | "colorTwo" | "colorThree"}
+                isSelected={selectedColor === color}
+                onChange={handleColorChange}
+              />
+            ))}
           </div>
           <p>Choose size</p>
           <div className="flex space-x-2 border-b border-b-grey-100 pb-4">

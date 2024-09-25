@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 type Props = {
   id: string;
@@ -19,8 +19,12 @@ const ProductItem: React.FC<Props> = ({
   mainImage,
   stock,
 }) => {
+  const navigate = useNavigate();
   return (
-    <div className="shrink-0 cursor-pointer">
+    <div
+      className="shrink-0 cursor-pointer"
+      onClick={() => navigate(`/products/${id}`)}
+    >
       <li>
         <div className="grid h-[200px] w-[198px] rounded-lg bg-primary-300 md:h-[290px] md:w-[295px]">
           <img

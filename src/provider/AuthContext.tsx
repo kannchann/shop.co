@@ -13,8 +13,10 @@ interface User {
 interface AuthContextType {
   user: User | null;
   isAuthenticated: boolean;
+  isAuthenticating: boolean;
   setCredentials: (userData: User) => void;
   logout: () => void;
+  isLoading: (state: boolean) => void;
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(
@@ -24,10 +26,15 @@ export const AuthContext = createContext<AuthContextType | undefined>(
 const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [isAuthenticating, setIsAuthenticating] = useState<boolean>(false);
 
   const setCredentials = (user: User) => {
     setIsAuthenticated(true);
     setUser(user);
+  };
+
+  const isLoading = (state: boolean) => {
+    setIsAuthenticating(state);
   };
 
   const logout = () => {
@@ -38,7 +45,14 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, isAuthenticated, setCredentials, logout }}
+      value={{
+        user,
+        isAuthenticated,
+        setCredentials,
+        logout,
+        isAuthenticating,
+        isLoading,
+      }}
     >
       {children}
     </AuthContext.Provider>

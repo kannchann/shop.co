@@ -5,14 +5,14 @@ import { AuthContext } from "../provider/AuthContext";
 import { navLinks } from "../utils/constants";
 import MobileNavbar from "./MobileNavbar";
 import Button from "./ui/Button";
-import { logo, logo1x } from "../assets";
+import { cartIcon, logo, searchIcon } from "../assets";
 import { accountIcon } from "../assets";
 import DropDown from "./ui/DropDown";
+import Search from "./ui/Search";
 
 type Props = {};
 
 const Navbar = (props: Props) => {
-  const userContext = useContext(AuthContext);
   const action = [
     {
       label: "My profile",
@@ -29,11 +29,13 @@ const Navbar = (props: Props) => {
       },
     },
   ];
+
+  const userContext = useContext(AuthContext);
   if (!userContext) {
     throw new Error("somthing went wrong");
   }
-
   const { isAuthenticated, logout } = userContext;
+
   return (
     <nav className="border-b border-grey-100">
       <div className="container flex justify-between py-[18px]">
@@ -55,11 +57,19 @@ const Navbar = (props: Props) => {
           </ul>
         </div>
 
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-4">
+          <button>
+            <img src={searchIcon} alt="" />
+          </button>
           {isAuthenticated ? (
-            <div className="relative space-x-2 md:flex">
+            // <div className="relative space-x-3 md:flex">
+            <>
+              <button>
+                <img src={cartIcon} alt="" />
+              </button>
+
               <DropDown actions={action} imgSrc={accountIcon} />
-            </div>
+            </>
           ) : (
             <div className="hidden space-x-2 md:flex">
               <Button

@@ -13,8 +13,7 @@ const Home = () => {
 
   return (
     <>
-      <div className="container mx-auto space-y-9 py-9">
-        {/* {user && <h2>Hi {user?.username}</h2>} */}
+      <div className="container space-y-9 py-9">
         <ProductList headingText="New Arrivals" />
         <ProductList headingText="Top Selling" />
       </div>

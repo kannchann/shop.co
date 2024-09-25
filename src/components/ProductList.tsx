@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import ProductItem from "./product/ProductItem";
 import Heading from "./ui/Heading";
+import { Navigate } from "react-router-dom";
 
 interface Product {
   _id: string;

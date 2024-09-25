@@ -1,5 +1,6 @@
 type Props = {
   size?: number;
+  position?: string;
 };
 
 const Spinner: React.FC<Props> = ({ size = 20 }) => {

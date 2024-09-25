@@ -1,20 +1,43 @@
 import { useState } from "react";
 
 type Props = {
-  color: string;
+  color: "colorOne" | "colorTwo" | "colorThree";
+  isSelected: boolean;
+  onChange: (color: string) => void;
 };
 
-const ColorRadioButton: React.FC<Props> = ({ color }) => {
+const ColorRadioButton: React.FC<Props> = ({ color, isSelected, onChange }) => {
+  const bgColors = {
+    colorOne: "bg-[#4F4631]",
+    colorTwo: "bg-[#314F4A]",
+    colorThree: "bg-[#31344F]",
+  };
   return (
-    <div>
-      <input type="radio" name="colors" className="hidden after:content-['']" />
-      <label
-        style={{
-          backgroundColor: `${color}`,
-        }}
-        className="relative block size-8 cursor-pointer rounded-full checked:bg-blue-500"
-      ></label>
-    </div>
+    <label className="relative inline-block cursor-pointer">
+      <input
+        type="radio"
+        className="absolute h-0 w-0 opacity-0"
+        checked={isSelected}
+        onChange={() => onChange(color)}
+      />
+      <span
+        className={`grid size-8 items-center justify-center rounded-full ${bgColors[color]}`}
+      >
+        {isSelected && (
+          <svg
+            className={`size-4 text-white`}
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        )}
+      </span>
+    </label>
   );
 };
 
