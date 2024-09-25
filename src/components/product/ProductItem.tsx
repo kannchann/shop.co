@@ -17,30 +17,26 @@ const ProductItem: React.FC<Props> = ({
   name,
   price,
   mainImage,
-  description,
   stock,
 }) => {
   return (
-    <div className="w-[300px] cursor-pointer">
-      <Link to={`products/${id}`}>
-        <li>
-          <div className="bg-slate-400">
-            <img
-              className="object-contain"
-              src={mainImage.url}
-              alt={name}
-              style={{ width: "600px" }}
-            />
+    <div className="shrink-0 cursor-pointer">
+      <li>
+        <div className="grid h-[200px] w-[198px] rounded-lg bg-primary-300 md:h-[290px] md:w-[295px]">
+          <img
+            className="h-full w-full rounded-lg object-contain"
+            src={mainImage.url}
+            alt={name}
+          />
+        </div>
+        <div className="py-3">
+          <h3 className="font-satoshiMedium">{name}</h3>
+          <div className="flex space-x-3">
+            <p className="font-satoshiMedium">${price}</p>
+            <span className="text-red-700">only {stock} left</span>
           </div>
-          <div className="p-3">
-            <h3>{name}</h3>
-            <div className="flex space-x-3">
-              <p>Price: ${price}</p>
-              <span className="text-red-700">only {stock} left</span>
-            </div>
-          </div>
-        </li>
-      </Link>
+        </div>
+      </li>
     </div>
   );
 };

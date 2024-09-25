@@ -8,9 +8,10 @@ import { AuthProvider } from "./provider/AuthContext";
 // import { useEffect } from "react";
 // import { useLocation } from "react-router-dom";
 import Dashboard from "./pages/protected/dashboard/Dashboard";
-import ProductDetail from "./pages/home/product/productDetail";
+import ProductDetail from "./pages/product/productDetail";
 import Profile from "./pages/protected/profile/Profile";
 import Orders from "./pages/protected/orders/Orders";
+import ProtectedLayout from "./layout/ProtectedLayout";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -29,12 +30,17 @@ const router = createBrowserRouter([
         element: <SignUp />,
       },
       {
-        path: "/dashboard",
-        element: <Dashboard />,
-      },
-      {
         path: "/products/:productID",
         element: <ProductDetail />,
+      },
+    ],
+  },
+  {
+    element: <ProtectedLayout />,
+    children: [
+      {
+        path: "/dashboard",
+        element: <Dashboard />,
       },
       {
         path: "/profile",
@@ -43,10 +49,6 @@ const router = createBrowserRouter([
       {
         path: "/orders",
         element: <Orders />,
-      },
-      {
-        path: "*",
-        element: <div>404 Not Found</div>,
       },
     ],
   },

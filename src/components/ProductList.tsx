@@ -2,6 +2,7 @@ import { ReactNode, useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import ProductItem from "./product/ProductItem";
+import Heading from "./ui/Heading";
 
 interface Product {
   _id: string;
@@ -14,8 +15,11 @@ interface Product {
   description: string;
   stock: number;
 }
+type Props = {
+  headingText: string;
+};
 
-const ProductList: React.FC = () => {
+const ProductList: React.FC<Props> = ({ headingText }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const getProducts = () => {
     axios
@@ -35,20 +39,25 @@ const ProductList: React.FC = () => {
   }, []);
 
   return (
-    <div className="w-full">
-      <ul className="grid grid-cols-4 items-center justify-center gap-4 p-10">
-        {products.map((product) => (
-          <ProductItem
-            key={product._id}
-            id={product._id}
-            name={product.name}
-            price={product.price}
-            stock={product.stock}
-            mainImage={product.mainImage}
-            description={product.description}
-          />
-        ))}
-      </ul>
+    <div className="space-y-9 border-b border-b-primary-300 pb-8">
+      <Heading headingText={headingText} />
+      <div className="w-full overflow-hidden">
+        <div className="overflow-scroll">
+          <ul className="flex justify-between gap-5">
+            {products.map((product) => (
+              <ProductItem
+                key={product._id}
+                id={product._id}
+                name={product.name}
+                price={product.price}
+                stock={product.stock}
+                mainImage={product.mainImage}
+                description={product.description}
+              />
+            ))}
+          </ul>
+        </div>
+      </div>
     </div>
   );
 };

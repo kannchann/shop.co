@@ -1,12 +1,12 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Spinner from "../../../../components/ui/Spinner";
-import ColorRadioButton from "../../../../components/ui/ColorRadioButton";
-import SizeRadioButton from "../../../../components/ui/SizeRadioButton";
-import Button from "../../../../components/ui/Button";
-import AddToCart from "../../../../components/ui/AddToCart";
-import { AuthContext } from "../../../../provider/AuthContext";
+import Spinner from "../../../components/ui/Spinner";
+import ColorRadioButton from "../../../components/ui/ColorRadioButton";
+import SizeRadioButton from "../../../components/ui/SizeRadioButton";
+import Button from "../../../components/ui/Button";
+import AddToCart from "../../../components/ui/AddToCart";
+import { AuthContext } from "../../../provider/AuthContext";
 
 interface Product {
   _id: string;
@@ -123,7 +123,7 @@ const Product: React.FC = () => {
               only {product.stock} items left
             </p>
           </div>
-          <p className="border-b border-b-grey-100 pb-4 font-custom2 font-black opacity-60">
+          <p className="font-custom2 border-b border-b-grey-100 pb-4 font-black opacity-60">
             {product.description}
           </p>
           <p>Select Colors</p>

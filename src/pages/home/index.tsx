@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthContext";
 import ProductList from "../../components/ProductList";
+import Dashboard from "../protected/dashboard/Dashboard";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const userContext = useContext(AuthContext);
@@ -13,9 +15,10 @@ const Home = () => {
 
   return (
     <>
-      <div className="container flex w-full">
+      <div className="container mx-auto space-y-9 py-9">
         {/* {user && <h2>Hi {user?.username}</h2>} */}
-        <ProductList />
+        <ProductList headingText="New Arrivals" />
+        <ProductList headingText="Top Selling" />
       </div>
     </>
   );

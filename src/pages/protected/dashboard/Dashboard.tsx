@@ -1,7 +1,9 @@
+import ProtectedLayout from "../../../layout/ProtectedLayout";
+
 type Props = {};
 
 const Dashboard = (props: Props) => {
-  return <div>Dashboard</div>;
+  return <div>dashboard</div>;
 };
 
 export default Dashboard;
