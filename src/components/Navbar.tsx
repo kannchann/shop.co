@@ -5,7 +5,7 @@ import { AuthContext } from "../provider/AuthContext";
 import { navLinks } from "../utils/constants";
 import MobileNavbar from "./MobileNavbar";
 import Button from "./ui/Button";
-import { logo } from "../assets";
+import { logo, logo1x } from "../assets";
 import { accountIcon } from "../assets";
 import DropDown from "./ui/DropDown";
 
@@ -38,8 +38,9 @@ const Navbar = (props: Props) => {
     <nav className="border-b border-grey-100">
       <div className="container flex justify-between py-[18px]">
         <div className="flex items-center space-x-3">
-          <div className=" ">
-            <img src={logo} alt="My Image" />
+          <MobileNavbar />
+          <div className="max-w-[160px]">
+            <img src={logo} alt="My Image" className="object-contain" />
           </div>
           {/* Hide nav links on tablet and smaller devices */}
           <ul className="hidden items-center space-x-3 md:flex">
@@ -56,7 +57,7 @@ const Navbar = (props: Props) => {
 
         <div className="flex items-center space-x-2">
           {isAuthenticated ? (
-            <div className="relative hidden space-x-2 md:flex">
+            <div className="relative space-x-2 md:flex">
               <DropDown actions={action} imgSrc={accountIcon} />
             </div>
           ) : (
@@ -75,9 +76,6 @@ const Navbar = (props: Props) => {
               />
             </div>
           )}
-
-          {/* Show hamburger on medium and smaller devices */}
-          <MobileNavbar />
         </div>
       </div>
     </nav>
