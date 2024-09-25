@@ -12,6 +12,7 @@ import ProductDetail from "./pages/product/productDetail";
 import Profile from "./pages/protected/profile/Profile";
 import Orders from "./pages/protected/orders/Orders";
 import ProtectedLayout from "./layout/ProtectedLayout";
+import NotFoundPage from "./pages/NotFoundPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
         element: <Orders />,
       },
     ],
+  },
+  {
+    path: "*",
+    element: <NotFoundPage />,
   },
 ]);
 

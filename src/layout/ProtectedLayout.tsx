@@ -1,6 +1,6 @@
-import React, { ReactNode, useContext } from "react";
+import React, { useContext } from "react";
 import { AuthContext } from "../provider/AuthContext";
-import { Outlet, redirect } from "react-router-dom";
+import { Navigate, Outlet, redirect } from "react-router-dom";
 
 const ProtectedLayout: React.FC = () => {
   const userContext = useContext(AuthContext);
@@ -11,16 +11,7 @@ const ProtectedLayout: React.FC = () => {
 
   const { isAuthenticated } = userContext;
 
-  if (!isAuthenticated) {
-    redirect("/login");
-    return;
-  }
-
-  return (
-    <>
-      <Outlet />
-    </>
-  );
+  return <>{isAuthenticated ? <Outlet /> : <Navigate to="/login" replace />}</>;
 };
 
 export default ProtectedLayout;

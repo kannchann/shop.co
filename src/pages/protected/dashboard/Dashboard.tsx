@@ -1,5 +1,3 @@
-import ProtectedLayout from "../../../layout/ProtectedLayout";
-
 type Props = {};
 
 const Dashboard = (props: Props) => {

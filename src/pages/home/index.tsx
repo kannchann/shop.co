@@ -1,8 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthContext";
 import ProductList from "../../components/ProductList";
-import Dashboard from "../protected/dashboard/Dashboard";
-import { Link } from "react-router-dom";
 
 const Home = () => {
   const userContext = useContext(AuthContext);

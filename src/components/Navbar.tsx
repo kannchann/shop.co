@@ -70,7 +70,7 @@ const Navbar = (props: Props) => {
               <Button
                 variant="primary"
                 size="small"
-                to="signup"
+                to="/signup"
                 buttonText="Sign up"
               />
             </div>
