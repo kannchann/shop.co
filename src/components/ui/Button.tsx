@@ -12,7 +12,7 @@ const variantStyles = {
 const sizeStyles = {
   small: "px-7 py-2.5 ",
   medium: "px-20 py-2.5 ",
-  large: "px-36 py-4 ",
+  large: " px-36 py-4 ",
 };
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {

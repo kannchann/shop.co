@@ -17,6 +17,7 @@ export default {
         IntegralBold: ["Integral", "sans-serif"],
         satoshi: ["satoshi", "sans-serif"],
         satoshiMedium: ["satoshi-medium", "sans-serif"],
+        satoshiBold: ["satoshi-bold", "sans-serif"],
       },
       animation: {
         "spin-slow": "spin 2s linear infinite",

@@ -9,10 +9,12 @@ import searchIcon from "./icons/searchIcon.svg";
 
 import hamburgerIcon from "./menuIcon.svg"
 
+import notFound from "./images/notFound.png"
 
 
 
 
 
 
-export { eyeIcon, eyeFalseIcon,cartIcon, hamburgerIcon,logo,accountIcon,searchIcon };
+
+export { eyeIcon, eyeFalseIcon,cartIcon, hamburgerIcon,logo,accountIcon,searchIcon, notFound };

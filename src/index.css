@@ -21,6 +21,11 @@
   src: url('./assets/fonts/satoshi-custom/Satoshi-Medium.otf') format("opentype");
 }
 
+@font-face {
+  font-family: 'satoshi-bold';
+  src: url('./assets/fonts/satoshi-custom/Satoshi-Bold.otf') format("opentype");
+}
+
 body{
   font-family: 'satoshi';
 }

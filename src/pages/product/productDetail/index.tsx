@@ -1,12 +1,13 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Navigate, redirect, useParams } from "react-router-dom";
 import Spinner from "../../../components/ui/Spinner";
 import ColorRadioButton from "../../../components/ui/ColorRadioButton";
 import SizeRadioButton from "../../../components/ui/SizeRadioButton";
 import Button from "../../../components/ui/Button";
 import AddToCart from "../../../components/ui/AddToCart";
 import { AuthContext } from "../../../provider/AuthContext";
+import NotFoundPage from "../../NotFoundPage";
 
 interface Product {
   _id: string;
@@ -44,9 +45,16 @@ const Product: React.FC = () => {
   const [mainImage, setMainImage] = useState("");
 
   const [selectedColor, setSelectedColor] = useState<string>("");
+  const [selectedSize, setSelectedSize] = useState<string>("");
 
   const handleColorChange = (color: string) => {
+    console.log(selectedColor);
     setSelectedColor(color);
+  };
+
+  const handleSizeChange = (size: string) => {
+    setSelectedSize(size);
+    console.log(selectedSize);
   };
 
   const { productID } = useParams();
@@ -89,10 +97,9 @@ const Product: React.FC = () => {
   }
 
   if (!product || !productID) {
-    return "product not found";
+    return <NotFoundPage />;
   }
 
-  console.log(product);
   return (
     <div className="container py-20">
       <div className="flex w-full flex-col gap-4 md:flex-row">
@@ -134,9 +141,9 @@ const Product: React.FC = () => {
           </p>
           <p>Select Colors</p>
           <div className="flex space-x-2 border-b border-b-grey-100 pb-4">
-            {["colorOne", "colorTwo", "color#"].map((color) => (
+            {["colorOne", "colorTwo", "colorThree"].map((color, index) => (
               <ColorRadioButton
-                key={color}
+                key={index}
                 color={color as "colorOne" | "colorTwo" | "colorThree"}
                 isSelected={selectedColor === color}
                 onChange={handleColorChange}
@@ -144,11 +151,16 @@ const Product: React.FC = () => {
             ))}
           </div>
           <p>Choose size</p>
+          {/* <pre>{JSON.stringify(selectedSize)}</pre> */}
           <div className="flex space-x-2 border-b border-b-grey-100 pb-4">
-            <SizeRadioButton text="small" />
-            <SizeRadioButton text="medium" />
-            <SizeRadioButton text="large" />
-            <SizeRadioButton text="X-large" />
+            {["small", "medium", "large", "X-large"].map((size, index) => (
+              <SizeRadioButton
+                key={index}
+                size={size as "small" | "medium" | "large" | "X-large"}
+                isSelected={selectedSize === size}
+                onChange={handleSizeChange}
+              />
+            ))}
           </div>
           <div className="flex space-x-2">
             <AddToCart stock={product.stock} />

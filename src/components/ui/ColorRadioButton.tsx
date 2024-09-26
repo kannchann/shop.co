@@ -18,8 +18,12 @@ const ColorRadioButton: React.FC<Props> = ({ color, isSelected, onChange }) => {
         type="radio"
         className="absolute h-0 w-0 opacity-0"
         checked={isSelected}
-        onChange={() => onChange(color)}
+        onChange={() => {
+          onChange(color);
+          console.log(color);
+        }}
       />
+
       <span
         className={`grid size-8 items-center justify-center rounded-full ${bgColors[color]}`}
       >
