@@ -3,10 +3,14 @@ import { useState } from "react";
 type Props = {
   color: "colorOne" | "colorTwo" | "colorThree";
   isSelected: boolean;
-  onChange: (color: string) => void;
+  colorChanged: (color: string) => void;
 };
 
-const ColorRadioButton: React.FC<Props> = ({ color, isSelected, onChange }) => {
+const ColorRadioButton: React.FC<Props> = ({
+  color,
+  isSelected,
+  colorChanged,
+}) => {
   const bgColors = {
     colorOne: "bg-[#4F4631]",
     colorTwo: "bg-[#314F4A]",
@@ -19,7 +23,7 @@ const ColorRadioButton: React.FC<Props> = ({ color, isSelected, onChange }) => {
         className="absolute h-0 w-0 opacity-0"
         checked={isSelected}
         onChange={() => {
-          onChange(color);
+          colorChanged(color);
           console.log(color);
         }}
       />

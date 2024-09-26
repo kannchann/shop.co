@@ -1,12 +1,11 @@
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
-import { Navigate, redirect, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import Spinner from "../../../components/ui/Spinner";
 import ColorRadioButton from "../../../components/ui/ColorRadioButton";
 import SizeRadioButton from "../../../components/ui/SizeRadioButton";
 import Button from "../../../components/ui/Button";
 import AddToCart from "../../../components/ui/AddToCart";
-import { AuthContext } from "../../../provider/AuthContext";
 import NotFoundPage from "../../NotFoundPage";
 
 interface Product {
@@ -32,30 +31,24 @@ interface Product {
 }
 
 const Product: React.FC = () => {
-  const userContext = useContext(AuthContext);
-
-  if (!userContext) {
-    throw new Error("somthing went wrong");
-  }
-
-  const { isAuthenticated } = userContext;
-
   const [product, setProduct] = useState<Product | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [mainImage, setMainImage] = useState("");
 
   const [selectedColor, setSelectedColor] = useState<string>("");
-  const [selectedSize, setSelectedSize] = useState<string>("");
+  const [selectedSize, setSelectedSize] = useState<string>("small");
 
   const handleColorChange = (color: string) => {
-    console.log(selectedColor);
     setSelectedColor(color);
   };
 
   const handleSizeChange = (size: string) => {
     setSelectedSize(size);
-    console.log(selectedSize);
   };
+
+  useEffect(() => {
+    console.log("Selected size", selectedSize);
+  }, [selectedSize]);
 
   const { productID } = useParams();
 
@@ -127,7 +120,7 @@ const Product: React.FC = () => {
         </div>
 
         <div className="space-y-2 lg:w-2/3">
-          <h1 className="font-custom1 text-xl md:text-3xl lg:text-4xl">
+          <h1 className="font-custom1 text-xl md:text-2xl lg:text-4xl">
             {product.name.toUpperCase()}
           </h1>
           <div className="flex space-x-5 text-lg font-bold">
@@ -146,7 +139,7 @@ const Product: React.FC = () => {
                 key={index}
                 color={color as "colorOne" | "colorTwo" | "colorThree"}
                 isSelected={selectedColor === color}
-                onChange={handleColorChange}
+                colorChanged={handleColorChange}
               />
             ))}
           </div>
@@ -157,14 +150,15 @@ const Product: React.FC = () => {
               <SizeRadioButton
                 key={index}
                 size={size as "small" | "medium" | "large" | "X-large"}
+                index={index}
                 isSelected={selectedSize === size}
-                onChange={handleSizeChange}
+                sizeChanged={handleSizeChange}
               />
             ))}
           </div>
           <div className="flex space-x-2">
             <AddToCart stock={product.stock} />
-            <Button size="large" buttonText="Add to Cart" />
+            <Button size="large" buttonText="Add to Cart" to="" />
           </div>
         </div>
       </div>

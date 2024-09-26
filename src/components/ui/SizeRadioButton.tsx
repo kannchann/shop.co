@@ -1,24 +1,33 @@
 type Props = {
   size: "small" | "medium" | "large" | "X-large";
   isSelected: boolean;
-  onChange: (size: string) => void;
+  sizeChanged: (size: string) => void;
+  index: number;
 };
 
-const SizeRadioButton: React.FC<Props> = ({ size, isSelected, onChange }) => {
+const SizeRadioButton: React.FC<Props> = ({
+  size,
+  isSelected,
+  sizeChanged,
+  index,
+}) => {
   return (
     <div className="relative">
-      <input
-        type="radio"
-        name="size"
-        className="absolute h-0 w-0 opacity-0"
-        onChange={() => onChange(size)}
-      />
       <label
-        className={`cursor-pointer rounded-full bg-primary-300 px-5 py-[10px] hover:bg-black-700 hover:text-white md:px-6 md:py-3 ${isSelected ? "active:bg-black-700 active:text-white" : ""}`}
-        htmlFor="size"
+        className={`cursor-pointer rounded-full px-5 py-[10px] hover:bg-black-700 hover:text-white md:px-6 md:py-3 ${isSelected ? "bg-black-700 text-white" : "bg-primary-300 text-black-700"}`}
+        htmlFor={`size-${index}`}
       >
         {size}
       </label>
+      <input
+        type="radio"
+        id={`size-${index}`}
+        name="size"
+        className="absolute h-0 w-0 opacity-0"
+        onChange={() => {
+          sizeChanged(size);
+        }}
+      />{" "}
     </div>
   );
 };
