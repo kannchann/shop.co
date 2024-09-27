@@ -1,18 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
+import { ProductItemType } from "../../@types/product";
 
-type Props = {
-  id: string;
-  name: string;
-  price: number;
-  mainImage: {
-    url: string;
-    localPath: string;
-  };
-  description: string;
-  stock: number;
-};
-
-const ProductItem: React.FC<Props> = ({
+const ProductItem: React.FC<ProductItemType> = ({
   id,
   name,
   price,

@@ -40,7 +40,7 @@ const ProductList: React.FC<Props> = ({ headingText }) => {
 
   return (
     <div className="space-y-9 border-b border-b-primary-300 pb-8">
-      <Heading headingText={headingText} />
+      <Heading headingText={headingText} position="center" />
       <div className="w-full overflow-hidden">
         <div className="overflow-scroll">
           <ul className="flex justify-between gap-5">

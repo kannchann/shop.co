@@ -6,8 +6,8 @@ type Props = {
 
 const Loader: React.FC<Props> = ({ size }) => {
   return (
-    <div className="grid h-screen w-full items-center justify-center">
-      <Spinner size={100} />
+    <div className="grid h-[100vh] w-full items-center justify-center">
+      <Spinner size={50} />
     </div>
   );
 };

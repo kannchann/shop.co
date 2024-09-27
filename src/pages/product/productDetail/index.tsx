@@ -1,42 +1,34 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import Spinner from "../../../components/ui/Spinner";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import ColorRadioButton from "../../../components/ui/ColorRadioButton";
 import SizeRadioButton from "../../../components/ui/SizeRadioButton";
 import Button from "../../../components/ui/Button";
-import AddToCart from "../../../components/ui/AddToCart";
 import NotFoundPage from "../../NotFoundPage";
+import { getToken } from "../../../utils/token.utils";
+import { AuthContext } from "../../../provider/AuthContext";
+import Heading from "../../../components/ui/Heading";
+import QuantityCounter from "../../../components/ui/QuantityCounter";
+import Loader from "../../../components/ui/Loader";
+import { Product } from "../../../@types/product";
 
-interface Product {
-  _id: string;
-  name: string;
-  category: string;
-  owner: string;
-  price: number;
-  mainImage: {
-    localPath: string;
-    url: string;
-    _id: string;
-  };
-  stock: number;
-  subImages: [
-    {
-      localPath: string;
-      url: string;
-      _id: string;
-    },
-  ];
-  description: string;
-}
-
-const Product: React.FC = () => {
+const ProductDetail: React.FC = () => {
   const [product, setProduct] = useState<Product | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [mainImage, setMainImage] = useState("");
 
-  const [selectedColor, setSelectedColor] = useState<string>("");
+  const [selectedColor, setSelectedColor] = useState<string>("colorOne");
   const [selectedSize, setSelectedSize] = useState<string>("small");
+
+  const [totalQuantity, setTotalQuantity] = useState<number>(1);
+
+  const userContext = useContext(AuthContext);
+  if (!userContext) {
+    throw new Error("somthing went wrong");
+  }
+  const { isAuthenticated } = userContext;
+
+  const navigate = useNavigate();
 
   const handleColorChange = (color: string) => {
     setSelectedColor(color);
@@ -46,9 +38,23 @@ const Product: React.FC = () => {
     setSelectedSize(size);
   };
 
-  useEffect(() => {
-    console.log("Selected size", selectedSize);
-  }, [selectedSize]);
+  const handleaddToCart = () => {
+    isAuthenticated
+      ? axios
+          .post(
+            `https://freeapi-app-production-dfcc.up.railway.app/api/v1/ecommerce/cart/item/${productID}`,
+            {
+              quantity: totalQuantity,
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${getToken()}`,
+              },
+            },
+          )
+          .catch((err) => console.log(err.response))
+      : navigate("/login");
+  };
 
   const { productID } = useParams();
 
@@ -82,11 +88,7 @@ const Product: React.FC = () => {
   };
 
   if (isLoading) {
-    return (
-      <div className="grid h-[1000px] w-full items-center justify-center">
-        <Spinner size={80} />;
-      </div>
-    );
+    return <Loader size={80} />;
   }
 
   if (!product || !productID) {
@@ -120,9 +122,10 @@ const Product: React.FC = () => {
         </div>
 
         <div className="space-y-2 lg:w-2/3">
-          <h1 className="font-custom1 text-xl md:text-2xl lg:text-4xl">
-            {product.name.toUpperCase()}
-          </h1>
+          <Heading
+            headingText={product.name.toUpperCase()}
+            position="start"
+          ></Heading>
           <div className="flex space-x-5 text-lg font-bold">
             <p>{`$${product.price}`}</p>
             <p className="text-red-600 opacity-60">
@@ -157,8 +160,16 @@ const Product: React.FC = () => {
             ))}
           </div>
           <div className="flex space-x-2">
-            <AddToCart stock={product.stock} />
-            <Button size="large" buttonText="Add to Cart" to="" />
+            <QuantityCounter
+              stock={product.stock}
+              count={totalQuantity}
+              setCount={setTotalQuantity}
+            />
+            <Button
+              size="large"
+              buttonText="Add to Cart"
+              onClick={handleaddToCart}
+            />
           </div>
         </div>
       </div>
@@ -166,4 +177,4 @@ const Product: React.FC = () => {
   );
 };
 
-export default Product;
+export default ProductDetail;
