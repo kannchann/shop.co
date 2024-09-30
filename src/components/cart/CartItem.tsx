@@ -1,41 +1,53 @@
-import QuantityCounter from "../ui/QuantityCounter";
 import { deleteButton } from "../../assets";
 import { Product } from "../../@types/product";
 
 type CartProducts = {
   coupon: string;
+  id: string;
   productDetails: Product;
   quantity: number;
+  onClick: (id: string) => void;
 };
 
 const CartItem: React.FC<CartProducts> = ({
   coupon,
   productDetails,
   quantity,
+  onClick,
+  id,
 }) => {
   return (
-    <div className="flex justify-between border-b border-b-red-300 px-5 py-6">
+    <div className="flex justify-between px-5 py-6">
       <div className="flex flex-row gap-3">
-        <div className="max-w-[124px] bg-primary-300">
-          {/* <img src={productDetails.mainImage.url} alt="" /> */}
+        <div className="max-w-[124px] rounded-md bg-primary-300">
+          <img
+            src={productDetails.mainImage.url}
+            alt="cart product image"
+            className="w-full rounded-md object-contain"
+          />
         </div>
         <div>
-          <h2>{productDetails?.name ?? "No name"}</h2>
+          <h2 className="font-satoshiBold text-xl">{productDetails.name}</h2>
           <p>
-            <span> size:</span> size
+            Quantity:
+            <span className=""> {quantity}</span>
           </p>
           <p>
-            <span> size:</span> size
+            <span> Size:</span> small
           </p>
-          <p>Price: price</p>
+          <p className="pt-4 font-satoshiBold text-2xl">
+            ${productDetails.price}
+          </p>
         </div>
       </div>
-      <div className="flex flex-col items-end justify-between">
-        <div>
-          <img src={deleteButton} alt="" />
-        </div>
-        <QuantityCounter stock={2} count={3} size="small" setCount={() => {}} />
-      </div>
+
+      <button
+        onClick={() => {
+          onClick(id);
+        }}
+      >
+        <img src={deleteButton} alt="" />
+      </button>
     </div>
   );
 };

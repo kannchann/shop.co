@@ -5,17 +5,22 @@ import { getToken } from "../../../utils/token.utils";
 
 import { Product } from "../../../@types/product";
 import Loader from "../../../components/ui/Loader";
-import CartItem from "../../../components/cart/cartItem";
+import CartItem from "../../../components/cart/CartItem";
+import { handleDeleteItemFromCart } from "../../../services/ProductServices";
+import Modal from "../../../components/ui/Modal";
+import ConfirmationModal from "../../../components/ConfirmationModal";
 
 interface Item {
   coupon: string;
-  productDetails: Product;
+  product: Product;
   quantity: number;
 }
 
 const Orders: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [cartItems, setCartItems] = useState<Item[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>();
+  const [selectedId, setSelectedId] = useState<string>("");
   const getCart = () => {
     axios
       .get(
@@ -28,7 +33,6 @@ const Orders: React.FC = () => {
       )
       .then((res) => {
         setCartItems(res.data.data.items);
-        console.log(res.data.data.items);
       })
       .catch((err) => {
         console.log(err.response);
@@ -38,6 +42,20 @@ const Orders: React.FC = () => {
       });
   };
 
+  const handleDeleteButton = async () => {
+    setIsLoading(true);
+    const res = await handleDeleteItemFromCart(selectedId);
+    if (res.success) {
+      getCart();
+    }
+    setSelectedId("");
+    setIsModalOpen(false);
+  };
+
+  const cancelDeleteButton = () => {
+    setSelectedId("");
+    setIsModalOpen(false);
+  };
   useEffect(() => {
     setIsLoading(true);
     getCart();
@@ -46,20 +64,34 @@ const Orders: React.FC = () => {
   if (isLoading) {
     return <Loader size={80} />;
   }
+  console.log(selectedId);
   return (
-    <div className="container py-9">
-      <Heading headingText="Your Cart" position="start" />
-      <div className="mt-9 min-w-[358px] max-w-[715px] border border-cyan-300">
-        {cartItems.length > 0 &&
-          cartItems.map((item) => (
-            <CartItem
-              coupon={item.coupon}
-              productDetails={item.productDetails}
-              quantity={item.quantity}
-            />
-          ))}
+    <>
+      <div className="container py-9">
+        <Heading headingText="Your Cart" position="start" />
+        <div className="mt-9 min-w-[358px] max-w-[715px] divide-y rounded-lg border border-black-700 border-opacity-10">
+          {cartItems.length > 0 &&
+            cartItems.map((item) => (
+              <CartItem
+                key={item.product._id}
+                id={item.product._id}
+                coupon={item.coupon}
+                productDetails={item.product}
+                quantity={item.quantity}
+                onClick={(id) => {
+                  setSelectedId(id);
+                  setIsModalOpen(true);
+                }}
+              />
+            ))}
+        </div>
       </div>
-    </div>
+      <ConfirmationModal
+        open={isModalOpen}
+        cancelButton={cancelDeleteButton}
+        confirmButton={handleDeleteButton}
+      />
+    </>
   );
 };
 

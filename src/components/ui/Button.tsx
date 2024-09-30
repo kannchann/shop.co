@@ -5,8 +5,7 @@ import Spinner from "./Spinner";
 // Define button variants and sizes for flexibility
 const variantStyles = {
   primary: "bg-black-700 text-white  hover:opacity-70",
-  secondary:
-    "bg-primary-100 text-primary-700 hover:bg-blue-900 hover:text-white ",
+  secondary: "bg-primary-100  hover:bg-black-700 hover:text-white ",
 };
 
 const sizeStyles = {
