@@ -36,7 +36,7 @@ const Navbar = (props: Props) => {
   const { isAuthenticated, logout } = userContext;
 
   return (
-    <nav className="border-b border-grey-100">
+    <nav className="">
       <div className="container flex justify-between py-[18px]">
         <div className="flex items-center gap-4">
           <MobileNavbar />

@@ -1,3 +1,5 @@
+import { calvin, categoryImageFour, categoryImageOne, categoryImageThree, categoryImageTwo, gucci, prada, versace, zara } from "../../assets";
+
 export const navLinks = [
   {
     id: "home",
@@ -78,3 +80,7 @@ export const reviews = [
     createdAt: "2024-09-19T06:57:28.188Z",
   }
 ]
+
+export const categoryImages = [categoryImageOne, categoryImageTwo, categoryImageThree, categoryImageFour]
+
+export const logoIcins = [ versace, zara,gucci,prada,calvin]

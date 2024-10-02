@@ -31,3 +31,8 @@ export interface Product {
     description: string;
     stock: number;
   };
+
+  export interface CategoryType {
+    name: string;
+
+  }

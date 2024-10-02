@@ -4,17 +4,6 @@ import ProductItem from "./product/ProductItem";
 import Heading from "./ui/Heading";
 import { Product } from "../@types/product";
 
-// interface Product {
-//   _id: string;
-//   name: string;
-//   price: number;
-//   mainImage: {
-//     url: string;
-//     localPath: string;
-//   };
-//   description: string;
-//   stock: number;
-// }
 type Props = {
   headingText: string;
 };

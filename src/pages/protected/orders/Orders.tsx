@@ -64,7 +64,7 @@ const Orders: React.FC = () => {
   if (isLoading) {
     return <Loader size={80} />;
   }
-  console.log(selectedId);
+
   return (
     <>
       <div className="container py-9">
