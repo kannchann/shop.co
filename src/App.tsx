@@ -11,6 +11,7 @@ import Profile from "./pages/protected/profile/Profile";
 import Orders from "./pages/protected/orders/Orders";
 import ProtectedLayout from "./layout/ProtectedLayout";
 import NotFoundPage from "./pages/NotFoundPage";
+import ProductsListing from "./pages/product/productListing";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: "/products/:productID",
         element: <ProductDetail />,
+      },
+      {
+        path: "/products/category/:categoryName/:categoryID",
+        element: <ProductsListing />,
       },
       {
         element: <ProtectedLayout />,

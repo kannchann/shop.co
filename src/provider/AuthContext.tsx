@@ -27,7 +27,7 @@ export const AuthContext = createContext<AuthContextType | undefined>(
 const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-  const [isAuthenticating, setIsAuthenticating] = useState<boolean>(false);
+  const [isAuthenticating, setIsAuthenticating] = useState<boolean>(true);
 
   const setCredentials = (user: User) => {
     setIsAuthenticated(true);

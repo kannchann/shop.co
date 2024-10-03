@@ -1,6 +1,6 @@
 import Navbar from "../components/Navbar";
 import { Outlet } from "react-router-dom";
-import { AuthContext, AuthProvider } from "../provider/AuthContext";
+import { AuthContext } from "../provider/AuthContext";
 import { useContext, useEffect } from "react";
 import { getToken } from "../utils/token.utils";
 import axios from "axios";
@@ -38,16 +38,16 @@ const RootLayout = (props: Props) => {
       });
   };
 
+  if (isAuthenticating) {
+    return <Loader size={50} />;
+  }
+
   return (
     <>
-      {isAuthenticating ? (
-        <Loader size={50} />
-      ) : (
-        <div>
-          <Navbar />
-          <Outlet />
-        </div>
-      )}
+      <div>
+        <Navbar />
+        <Outlet />
+      </div>
     </>
   );
 };
