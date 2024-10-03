@@ -1,10 +1,12 @@
 import axios from "axios";
-import { getToken, removeToken, setToken } from "../token.utils";
-import { useNavigate } from "react-router-dom";
+import { getToken, removeToken } from "../token.utils";
+
+
 
 
 export const api = ()=>{
-    // const navigate = useNavigate();
+
+
     const baseUrl = 'https://freeapi-app-production-dfcc.up.railway.app/api/v1/';
 
     const axiosConfig = {
@@ -28,11 +30,12 @@ export const api = ()=>{
         return res;
       },(error) => {
         if (error?.response?.status === 403) {
+          throw new Error("i am 403 error");
 
         }
         if (error?.response?.status === 401) {
             removeToken();
-            // navigate("/login"
+            throw new Error("i am 401 error");
             
         }
       }

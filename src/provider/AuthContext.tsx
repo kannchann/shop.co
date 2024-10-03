@@ -1,6 +1,5 @@
 import React, { createContext, useState, ReactNode, Children } from "react";
 import { removeToken } from "../utils/token.utils";
-import { Navigate, useNavigate } from "react-router-dom";
 
 interface User {
   firstName: string;

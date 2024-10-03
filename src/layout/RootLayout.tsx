@@ -18,11 +18,12 @@ const RootLayout = (props: Props) => {
   useEffect(() => {
     if (!!getToken()) {
       getUser();
+    } else {
+      isLoading(false);
     }
   }, []);
 
   const getUser = () => {
-    isLoading(true);
     axios
       .get(
         "https://freeapi-app-production-dfcc.up.railway.app/api/v1/users/current-user",
@@ -34,6 +35,10 @@ const RootLayout = (props: Props) => {
       )
       .then((res) => {
         setCredentials(res.data);
+        isLoading(false);
+      })
+      .catch((err) => {
+        console.log(err.message);
         isLoading(false);
       });
   };
