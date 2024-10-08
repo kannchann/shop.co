@@ -13,6 +13,10 @@ export default {
       },
     },
     extend: {
+      backgroundImage: {
+        "hero-pattern": "url('src/assets/images/heroImage.svg')",
+      },
+
       fontFamily: {
         IntegralBold: ["Integral", "sans-serif"],
         satoshi: ["satoshi", "sans-serif"],

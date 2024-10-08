@@ -5,6 +5,7 @@ import { useContext, useEffect } from "react";
 import { getToken } from "../utils/token.utils";
 import axios from "axios";
 import Loader from "../components/ui/Loader";
+import { baseUrl } from "../utils/http/api";
 
 type Props = {};
 
@@ -25,14 +26,11 @@ const RootLayout = (props: Props) => {
 
   const getUser = () => {
     axios
-      .get(
-        "https://freeapi-app-production-dfcc.up.railway.app/api/v1/users/current-user",
-        {
-          headers: {
-            Authorization: `Bearer ${getToken()}`,
-          },
+      .get(`${baseUrl}/users/current-user`, {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
         },
-      )
+      })
       .then((res) => {
         setCredentials(res.data);
         isLoading(false);

@@ -9,6 +9,7 @@ import CartItem from "../../../components/cart/CartItem";
 import { handleDeleteItemFromCart } from "../../../services/ProductServices";
 import Modal from "../../../components/ui/Modal";
 import ConfirmationModal from "../../../components/ConfirmationModal";
+import { baseUrl } from "../../../utils/http/api";
 
 interface Item {
   coupon: string;
@@ -23,14 +24,11 @@ const Orders: React.FC = () => {
   const [selectedId, setSelectedId] = useState<string>("");
   const getCart = () => {
     axios
-      .get(
-        "https://freeapi-app-production-dfcc.up.railway.app/api/v1/ecommerce/cart",
-        {
-          headers: {
-            Authorization: `Bearer ${getToken()}`,
-          },
+      .get(`${baseUrl}/ecommerce/cart`, {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
         },
-      )
+      })
       .then((res) => {
         setCartItems(res.data.data.items);
       })

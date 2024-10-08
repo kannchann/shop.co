@@ -3,7 +3,7 @@ type Props = {};
 
 const MobileNavbar = (props: Props) => {
   return (
-    <div className="md:hidden">
+    <div className="lg:hidden">
       <img src={hamburgerIcon} alt="menu" />
     </div>
   );

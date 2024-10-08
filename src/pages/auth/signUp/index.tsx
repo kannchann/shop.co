@@ -5,6 +5,7 @@ import Input from "../../../components/ui/Input";
 import Button from "../../../components/ui/Button";
 import axios from "axios";
 import WarningBanner from "../../../components/ui/WarningBanner";
+import { baseUrl } from "../../../utils/http/api";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -84,14 +85,11 @@ const SignUp = () => {
   ) => {
     setIsLoading(true);
     axios
-      .post(
-        "https://freeapi-app-production-dfcc.up.railway.app/api/v1/users/register",
-        {
-          email: email,
-          password: password,
-          username: userName,
-        },
-      )
+      .post(`${baseUrl}/users/register`, {
+        email: email,
+        password: password,
+        username: userName,
+      })
       .then((res) => {
         console.log(res);
         if (res.data.success === true) {

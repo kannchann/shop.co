@@ -9,6 +9,7 @@ import { getToken, setToken } from "../../../utils/token.utils";
 import { useContext } from "react";
 import { AuthContext } from "../../../provider/AuthContext";
 import WarningBanner from "../../../components/ui/WarningBanner";
+import { baseUrl } from "../../../utils/http/api";
 
 // import { Link } from "react-router-dom";
 const Login = () => {
@@ -66,13 +67,10 @@ const Login = () => {
   const handleNewLogin = (username: string, password: string) => {
     setIsLoading(true);
     axios
-      .post(
-        "https://freeapi-app-production-dfcc.up.railway.app/api/v1/users/login",
-        {
-          username: username,
-          password: password,
-        },
-      )
+      .post(`${baseUrl}/users/login`, {
+        username: username,
+        password: password,
+      })
       .then((res) => {
         console.log(res);
         if (res.data.message === "User logged in successfully") {
@@ -98,14 +96,11 @@ const Login = () => {
 
   const getUser = () => {
     axios
-      .get(
-        "https://freeapi-app-production-dfcc.up.railway.app/api/v1/users/current-user",
-        {
-          headers: {
-            Authorization: `Bearer ${getToken()}`,
-          },
+      .get(`${baseUrl}/users/current-user`, {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
         },
-      )
+      })
       .then((res) => {
         setCredentials(res.data);
       });

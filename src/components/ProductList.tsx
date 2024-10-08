@@ -3,6 +3,7 @@ import axios from "axios";
 import ProductItem from "./product/ProductItem";
 import Heading from "./ui/Heading";
 import { Product } from "../@types/product";
+import { baseUrl } from "../utils/http/api";
 
 type Props = {
   headingText: string;
@@ -12,9 +13,7 @@ const ProductList: React.FC<Props> = ({ headingText }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const getProducts = () => {
     axios
-      .get(
-        "https://freeapi-app-production-dfcc.up.railway.app/api/v1/ecommerce/products?page=1&limit=4",
-      )
+      .get(`${baseUrl}/ecommerce/products?page=1&limit=4`)
       .then((res) => {
         setProducts(res.data.data.products);
       })

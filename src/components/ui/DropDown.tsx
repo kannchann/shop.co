@@ -16,7 +16,7 @@ const DropDown: React.FC<DropDownProps> = ({ actions, imgSrc }) => {
   const handleClick = () => setShowDropDown((prev) => !prev);
   // const handleBlur = () => setShowDropDown(() => showDropDown == false);
   return (
-    <button onClick={handleClick} className="relative">
+    <div onClick={handleClick} className="relative">
       <img src={imgSrc} alt="" />
       {showDropDown && (
         <div className="absolute right-1 top-9 grid min-w-[150px] justify-start border border-primary-300 bg-white px-2 py-2 text-start text-black-100 shadow-lg">
@@ -37,7 +37,7 @@ const DropDown: React.FC<DropDownProps> = ({ actions, imgSrc }) => {
           ))}
         </div>
       )}
-    </button>
+    </div>
   );
 };
 

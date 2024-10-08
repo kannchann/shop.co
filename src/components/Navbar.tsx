@@ -8,6 +8,7 @@ import Button from "./ui/Button";
 import { cartIcon, logo, searchIcon } from "../assets";
 import { accountIcon } from "../assets";
 import DropDown from "./ui/DropDown";
+import Search from "./ui/Search";
 
 type Props = {};
 
@@ -37,17 +38,19 @@ const Navbar = (props: Props) => {
 
   return (
     <nav className="">
-      <div className="container flex justify-between py-[18px]">
-        <div className="flex items-center gap-4">
+      <div className="container flex items-center justify-between py-5">
+        <div className="flex items-center gap-4 md:gap-5 lg:gap-10">
           <MobileNavbar />
-          <div className="max-w-[160px]">
-            <img src={logo} alt="My Image" className="object-contain" />
+          <div className="h-auto max-w-[160px]">
+            <Link to="/">
+              <img src={logo} alt="My Image" className="object-contain" />
+            </Link>
           </div>
           {/* Hide nav links on tablet and smaller devices */}
-          <ul className="hidden items-center gap-3 md:flex">
+          <ul className="hidden items-center gap-6 lg:flex">
             {navLinks.map((link) => (
               <li
-                className="text-base font-normal text-black-100"
+                className="text-base font-normal text-black-100 hover:font-extrabold"
                 key={link.id}
               >
                 <Link to={link.path}> {link.title}</Link>
@@ -56,15 +59,13 @@ const Navbar = (props: Props) => {
           </ul>
         </div>
 
-        <div className="flex items-center justify-between space-x-4">
-          <button>
-            <img src={searchIcon} alt="Search" />
-          </button>
+        <div className={isAuthenticated ? "md:flex-grow" : ""}>
           {isAuthenticated ? (
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center gap-3">
+              <Search />
               <Link to="/orders" className="flex items-center">
                 <button>
-                  <img src={cartIcon} alt="Cart" />
+                  <img src={cartIcon} alt="Cart" className="h-6 w-6" />
                 </button>
               </Link>
 

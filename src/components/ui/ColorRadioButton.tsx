@@ -1,7 +1,17 @@
 import { useState } from "react";
 
 type Props = {
-  color: "colorOne" | "colorTwo" | "colorThree";
+  color:
+    | "colorOne"
+    | "colorTwo"
+    | "colorThree"
+    | "colorFour"
+    | "colorFive"
+    | "colorSix"
+    | "colorSeven"
+    | "colorEight"
+    | "colorNine"
+    | "colorTen";
   isSelected: boolean;
   colorChanged: (color: string) => void;
 };
@@ -15,6 +25,13 @@ const ColorRadioButton: React.FC<Props> = ({
     colorOne: "bg-[#4F4631]",
     colorTwo: "bg-[#314F4A]",
     colorThree: "bg-[#31344F]",
+    colorFour: "bg-[#00C12B]",
+    colorFive: "bg-[#7D06F5]",
+    colorSix: "bg-[#4F4631]",
+    colorSeven: "bg-[#F506A4]",
+    colorEight: "bg-[#F5DD06]",
+    colorNine: "bg-[#063AF5]",
+    colorTen: "bg-[#06CAF5]",
   };
   return (
     <label className="relative inline-block cursor-pointer">

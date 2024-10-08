@@ -15,5 +15,5 @@ export const getCategoryType = async () => {
 export const getProductsOfCategory = async (categoryId:string) => {
    const res = await api().get(`/ecommerce/products/category/${categoryId}?page=1&limit=5
 `)
-   return res.data;
+   return res.data.data;
 } // get product of particular category

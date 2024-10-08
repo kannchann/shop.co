@@ -7,9 +7,9 @@ const Home = () => {
   return (
     <>
       <div className="bg-primary-100">
-        <div className="container space-y-9">
-          <div className="items-center md:flex">
-            <div className="grid w-full space-y-5 px-4 py-10 md:block md:w-1/2">
+        <div className="container">
+          <div className="back items-center md:flex">
+            <div className="grid w-full space-y-8 md:block md:w-1/2">
               <h1 className="text-4xl md:text-5xl lg:text-6xl lg:leading-[64px]">
                 FIND CLOTHES THAT MATCHES YOUR STYLE
               </h1>
@@ -19,14 +19,14 @@ const Home = () => {
                 your sense of style.
               </p>
               <Button buttonText="Shop Now" />
-              <div className="flex gap-3 pt-5">
-                <div>
+              <div className="flex space-x-14 pt-8">
+                <div className="min-w-fit">
                   <p className="font-satoshiBold text-2xl lg:text-4xl">200+</p>
                   <p className="text-xs opacity-60 lg:text-base">
                     International Brands
                   </p>
                 </div>
-                <div>
+                <div className="min-w-fit">
                   <p className="font-satoshiBold text-2xl lg:text-4xl">
                     20,00+
                   </p>
@@ -34,7 +34,7 @@ const Home = () => {
                     High Quality Products
                   </p>
                 </div>
-                <div>
+                <div className="min-w-fit">
                   <p className="font-satoshiBold text-2xl lg:text-4xl">
                     30,000+
                   </p>

@@ -6,6 +6,8 @@ import accountIcon from "./icons/accountIcon.svg";
 import cartIcon from "./icons/CartIcon.svg";
 import searchIcon from "./icons/searchIcon.svg";
 import deleteButton from "./icons/deleteButton.svg";
+import filter from "./icons/filter.svg";
+import chevronRight from "./icons/chevron-right.svg";
 
 import addIcon from "./icons/addIcon.svg";
 import subtractIcon from "./icons/subractIcon.svg";
@@ -30,6 +32,7 @@ import calvin from "./svgs/calvin.svg";
 
 
 
+
 export { eyeIcon, eyeFalseIcon,cartIcon, hamburgerIcon,logo,accountIcon,searchIcon, notFound,deleteButton, addIcon, subtractIcon, categoryImageOne, categoryImageTwo, categoryImageThree, categoryImageFour, heroImage, heroBackgroundDesign,
-    versace, zara,gucci,prada,calvin
+    versace, zara,gucci,prada,calvin, filter,chevronRight
 };

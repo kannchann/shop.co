@@ -1,13 +1,13 @@
 import axios from "axios";
 import { getToken, removeToken } from "../token.utils";
 
-
+export const baseUrl = 'http://localhost:8080/api/v1';
 
 
 export const api = ()=>{
 
 
-    const baseUrl = 'https://freeapi-app-production-dfcc.up.railway.app/api/v1/';
+    
 
     const axiosConfig = {
         baseURL: baseUrl,

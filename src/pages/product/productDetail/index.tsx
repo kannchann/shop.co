@@ -11,6 +11,7 @@ import Heading from "../../../components/ui/Heading";
 import QuantityCounter from "../../../components/ui/QuantityCounter";
 import Loader from "../../../components/ui/Loader";
 import { Product } from "../../../@types/product";
+import { baseUrl } from "../../../utils/http/api";
 
 const ProductDetail: React.FC = () => {
   const [product, setProduct] = useState<Product | null>(null);
@@ -42,7 +43,7 @@ const ProductDetail: React.FC = () => {
     isAuthenticated
       ? axios
           .post(
-            `https://freeapi-app-production-dfcc.up.railway.app/api/v1/ecommerce/cart/item/${productID}`,
+            `${baseUrl}/ecommerce/cart/item/${productID}`,
             {
               quantity: totalQuantity,
             },
@@ -60,9 +61,7 @@ const ProductDetail: React.FC = () => {
 
   const getProductDetail = () => {
     axios
-      .get(
-        `https://freeapi-app-production-dfcc.up.railway.app/api/v1/ecommerce/products/${productID}`,
-      )
+      .get(`${baseUrl}/ecommerce/products/${productID}`)
       .then((res) => {
         setProduct(res.data.data);
         setMainImage(res.data.data.subImages[0].url);

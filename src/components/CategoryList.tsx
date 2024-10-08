@@ -34,7 +34,7 @@ const CategoryList = () => {
               navigate(`/products/category/${category.name}/${category._id}`);
             }}
           >
-            <p className="px-5 py-3 font-satoshiBold md:px-7 md:py-5 md:text-xl lg:px-9 lg:text-3xl">
+            <p className="px-3 py-3 font-satoshiBold md:px-7 md:py-5 md:text-xl lg:px-9 lg:text-3xl">
               {category.name}
             </p>
             <div className="h-full w-full rounded-r-lg">
