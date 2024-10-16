@@ -16,7 +16,7 @@ const ProductItem: React.FC<ProductItemType> = ({
     >
       <div className="min-h[174px] min-w-[174px] max-w-[295px] rounded-lg bg-primary-300 lg:h-[298px]">
         <img
-          className="h-auto w-full rounded-lg object-cover"
+          className="h-full w-full rounded-lg object-cover"
           src={mainImage.url}
           alt={name}
         />

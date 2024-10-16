@@ -12,6 +12,7 @@ import Orders from "./pages/protected/orders/Orders";
 import ProtectedLayout from "./layout/ProtectedLayout";
 import NotFoundPage from "./pages/NotFoundPage";
 import ProductsListing from "./pages/product/productListing";
+import AboutPage from "./pages/about";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: <SignUp />,
+      },
+      {
+        path: "/about",
+        element: <AboutPage />,
       },
       {
         path: "/products/:productID",

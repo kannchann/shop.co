@@ -9,7 +9,6 @@ interface AutocompleteSearchBarProps {
 
 const Search: React.FC<AutocompleteSearchBarProps> = ({ query, setQuery }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   return (
     <>
       <div className="flex rounded-full md:mx-7 md:flex-grow md:bg-primary-100 md:px-4 md:py-3 lg:mx-10">
@@ -23,7 +22,7 @@ const Search: React.FC<AutocompleteSearchBarProps> = ({ query, setQuery }) => {
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="ml-2 hidden bg-transparent text-base outline-none md:block"
+          className="ml-2 hidden w-full bg-transparent text-base outline-none md:block"
           placeholder="Search for Products"
         />
       </div>

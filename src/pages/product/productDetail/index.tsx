@@ -98,40 +98,44 @@ const ProductDetail: React.FC = () => {
     <div className="container py-20">
       <div className="flex w-full flex-col gap-4 md:flex-row">
         {/*images div */}
-        <div className="flex w-full flex-col gap-3 lg:w-1/2 lg:flex-row-reverse">
-          <figure className="h-full w-full min-w-[358px] rounded-lg bg-primary-300 md:w-[444px]">
-            <img src={mainImage} alt="" className="rounded-lg object-contain" />
+        <div className="flex w-full flex-col gap-3 md:w-1/2 lg:flex-row-reverse">
+          <figure className="h-full w-full min-w-[358px] rounded-lg bg-primary-300 md:w-full">
+            <img
+              src={mainImage}
+              alt=""
+              className="h-full w-full rounded-lg object-cover"
+            />
           </figure>
 
-          <div className="flex gap-3 lg:flex-col">
+          <div className="flex gap-3 md:flex-row lg:flex-col">
             {product.subImages.slice(0, 3).map((subImg) => (
               <figure
                 key={subImg._id}
-                className="min-h[106px] max-h[167px] min-w-[112px] max-w-[152px] rounded-lg"
+                className="max-h-[167px] min-h-[106px] min-w-[112px] max-w-[152px] rounded-lg md:flex-1"
                 onClick={() => handleClick(subImg.url)}
               >
                 <img
                   src={subImg.url}
                   alt="product image"
-                  className="rounded-lg object-contain"
+                  className="h-full w-full rounded-lg object-cover"
                 />
               </figure>
             ))}
           </div>
         </div>
 
-        <div className="space-y-2 lg:w-2/3">
+        <div className="space-y-2 md:w-1/2 lg:w-2/3">
           <Heading
             headingText={product.name.toUpperCase()}
             position="start"
           ></Heading>
-          <div className="flex space-x-5 text-lg font-bold">
+          <div className="flex flex-wrap space-x-5 text-lg font-bold">
             <p>{`$${product.price}`}</p>
             <p className="text-red-600 opacity-60">
               only {product.stock} items left
             </p>
           </div>
-          <p className="font-custom2 border-b border-b-grey-100 pb-4 font-black opacity-60">
+          <p className="font-custom2 border-b border-b-grey-100 pb-4 font-black opacity-60 md:text-sm lg:text-base">
             {product.description}
           </p>
           <p>Select Colors</p>
