@@ -83,4 +83,4 @@ export const reviews = [
 
 export const categoryImages = [categoryImageOne, categoryImageTwo, categoryImageThree, categoryImageFour]
 
-export const logoIcins = [ versace, zara,gucci,prada,calvin]
+export const logoIcons = [ versace, zara,gucci,prada,calvin, versace, zara, gucci, prada,calvin]

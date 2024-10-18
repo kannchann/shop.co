@@ -4,6 +4,7 @@ import ProductItem from "./product/ProductItem";
 import Heading from "./ui/Heading";
 import { Product } from "../@types/product";
 import { baseUrl } from "../utils/http/api";
+import Button from "./ui/Button";
 
 type Props = {
   headingText: string;
@@ -27,7 +28,7 @@ const ProductList: React.FC<Props> = ({ headingText }) => {
   }, []);
 
   return (
-    <div className="space-y-9 border-b border-b-primary-300 pb-8">
+    <div className="grid flex-col items-center space-y-9 border-b border-b-primary-300 pb-10 pt-12 md:flex">
       <Heading headingText={headingText} position="center" />
       <div className="w-full overflow-hidden">
         <div className="overflow-scroll">
@@ -46,6 +47,7 @@ const ProductList: React.FC<Props> = ({ headingText }) => {
           </ul>
         </div>
       </div>
+      <Button buttonText="View All" variant="tertiary" to="/products" />
     </div>
   );
 };

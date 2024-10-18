@@ -2,10 +2,11 @@ import React, { ButtonHTMLAttributes } from "react";
 import { Link } from "react-router-dom";
 import Spinner from "./Spinner";
 
-// Define button variants and sizes for flexibility
 const variantStyles = {
   primary: "bg-black-700 text-white  hover:opacity-70",
   secondary: "bg-primary-100  hover:bg-black-700 hover:text-white ",
+  tertiary:
+    "border border-black-700 font-satoshiMedium border-opacity-10 hover:bg-black-700 hover:text-white",
 };
 
 const sizeStyles = {
@@ -15,10 +16,10 @@ const sizeStyles = {
 };
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "tertiary";
   size?: "small" | "medium" | "large";
   buttonText?: string;
-  to?: string; // Use 'to' for routing with React Router DOM
+  to?: string;
   isLoading?: boolean;
   disabled?: boolean;
   onClick?: () => void;
@@ -35,12 +36,11 @@ const Button: React.FC<ButtonProps> = ({
   onClick,
   ...rest
 }) => {
-  // If 'to' is provided, render as a React Router Link
   if (!!to) {
     return (
       <Link
         to={disabled ? null : to}
-        className={`grid items-center justify-center rounded-md font-semibold transition duration-300 ${variantStyles[variant]} ${sizeStyles[size]} ${className} `}
+        className={`grid items-center justify-center rounded-full font-semibold transition duration-300 ${variantStyles[variant]} ${sizeStyles[size]} ${className} `}
         style={{ whiteSpace: "nowrap" }}
         {...(rest as any)}
       >
@@ -50,7 +50,6 @@ const Button: React.FC<ButtonProps> = ({
     );
   }
 
-  // Render as a standard button
   return (
     <button
       className={`grid items-center justify-center rounded-full text-base transition duration-300 ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}
