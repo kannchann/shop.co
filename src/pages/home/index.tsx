@@ -2,7 +2,6 @@ import ProductList from "../../components/ProductList";
 import CategoryList from "../../components/CategoryList";
 import Button from "../../components/ui/Button";
 import { heroBackgroundDesign, heroImage } from "../../assets";
-import { logoIcons } from "../../utils/constants";
 import Carousel from "../../components/ui/Carousel";
 
 const Home = () => {
@@ -63,16 +62,7 @@ const Home = () => {
         </div>
       </div>
 
-      {/* <div className="flex w-full justify-between bg-black-700 py-11">
-        {logoIcons.map((image) => (
-          <div className="">
-            <img src={image} alt="" className="object-contain" />
-          </div>
-        ))}
-      </div> */}
-      <div>
-        <Carousel />
-      </div>
+      <Carousel />
 
       <div className="container">
         <ProductList headingText="New Arrivals" />

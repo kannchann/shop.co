@@ -97,13 +97,12 @@ const ProductDetail: React.FC = () => {
   return (
     <div className="container py-20">
       <div className="flex w-full flex-col gap-4 md:flex-row">
-        {/*images div */}
         <div className="flex w-full flex-col gap-3 md:w-1/2 lg:flex-row-reverse">
-          <figure className="h-full w-full min-w-[358px] rounded-lg bg-primary-300 md:w-full">
+          <figure className="h-full w-full min-w-[358px] cursor-pointer overflow-hidden rounded-lg bg-primary-300 md:w-full">
             <img
               src={mainImage}
               alt=""
-              className="h-full w-full rounded-lg object-cover"
+              className="h-full w-full rounded-lg object-cover transition-transform duration-500 ease-in-out hover:scale-110"
             />
           </figure>
 
@@ -111,7 +110,7 @@ const ProductDetail: React.FC = () => {
             {product.subImages.slice(0, 3).map((subImg) => (
               <figure
                 key={subImg._id}
-                className="max-h-[167px] min-h-[106px] min-w-[112px] max-w-[152px] rounded-lg md:flex-1"
+                className="max-h-[167px] min-h-[106px] min-w-[112px] max-w-[152px] cursor-pointer rounded-lg md:flex-1"
                 onClick={() => handleClick(subImg.url)}
               >
                 <img

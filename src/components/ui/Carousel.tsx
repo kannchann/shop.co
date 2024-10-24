@@ -10,6 +10,8 @@ const Carousel: React.FC = () => {
   const totalWidth = (itemWidth + gap) * totalItems;
 
   useEffect(() => {
+    console.log(totalWidth);
+
     const interval = setInterval(() => {
       setCurrentOffset((prevOffset) => {
         const newOffset = prevOffset + 1;
@@ -17,7 +19,7 @@ const Carousel: React.FC = () => {
       });
     }, 30);
     return () => clearInterval(interval);
-  }, [totalWidth]);
+  }, []);
 
   return (
     <div className="relative w-full overflow-hidden bg-black-700 py-11">

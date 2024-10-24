@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ProductItemType } from "../../@types/product";
 
 const ProductItem: React.FC<ProductItemType> = ({
@@ -14,9 +14,9 @@ const ProductItem: React.FC<ProductItemType> = ({
       className="shrink-0 cursor-pointer outline-red-500"
       onClick={() => navigate(`/products/${id}`)}
     >
-      <div className="min-h[174px] min-w-[174px] max-w-[295px] rounded-lg bg-primary-300 lg:h-[298px]">
+      <div className="min-h[174px] min-w-[174px] max-w-[295px] overflow-hidden rounded-lg bg-primary-300 lg:h-[298px]">
         <img
-          className="h-full w-full rounded-lg object-cover"
+          className="h-full w-full rounded-lg object-cover transition-transform duration-300 ease-in-out hover:scale-110"
           src={mainImage.url}
           alt={name}
         />

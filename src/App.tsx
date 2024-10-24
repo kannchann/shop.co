@@ -44,6 +44,10 @@ const router = createBrowserRouter([
         element: <ProductsListing />,
       },
       {
+        path: "/products",
+        element: <ProductsListing />,
+      },
+      {
         element: <ProtectedLayout />,
         children: [
           {
