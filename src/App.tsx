@@ -13,6 +13,7 @@ import ProtectedLayout from "./layout/ProtectedLayout";
 import NotFoundPage from "./pages/NotFoundPage";
 import ProductsListing from "./pages/product/productListing";
 import AboutPage from "./pages/about";
+import Contact from "./pages/contact";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: "/about",
         element: <AboutPage />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
       },
       {
         path: "/products/:productID",

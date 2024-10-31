@@ -2,7 +2,7 @@ import React, { InputHTMLAttributes, useState } from "react";
 import { eyeIcon, eyeFalseIcon } from "../../assets";
 
 interface InputProps {
-  type: "text" | "email" | "password" | "checkbox";
+  type: "text" | "email" | "password" | "checkbox" | "tel";
   id: string;
   labelText?: string;
   value: string;

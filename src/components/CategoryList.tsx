@@ -37,10 +37,10 @@ const CategoryList = () => {
             <p className="px-3 py-3 font-satoshiBold md:px-7 md:py-5 md:text-xl lg:px-9 lg:text-3xl">
               {category.name}
             </p>
-            <div className="h-full w-full rounded-r-lg">
+            <div className="h-full w-full overflow-hidden rounded-r-lg">
               <img
                 src={categoryImages[index]}
-                className="h-full w-full rounded-r-lg object-cover"
+                className="h-full w-full rounded-r-lg object-cover transition-transform hover:scale-110"
               />
             </div>
           </button>
