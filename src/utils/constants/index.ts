@@ -18,6 +18,53 @@ export const navLinks = [
   },
 ];
 
+ export const footerItems = [
+  {
+    id: 1,
+    title: "Company",
+    links: [
+      { id: 1, url: "", label: "About" },
+      { id: 2, url: "", label: "Features" },
+      { id: 3, url: "", label: "Works" },
+      { id: 4, url: "", label: "Career" },
+    ],
+  },
+  {
+    id: 2,
+    title: "Help",
+    links: [
+      { id: 1, url: "", label: "Customer Support" },
+      { id: 2, url: "", label: "Delivery Details" },
+      { id: 3, url: "", label: "Terms and Conditions" },
+      { id: 4, url: "", label: "Policy" },
+
+    ],
+  },
+  {
+    id: 3,
+    title: "FAQ",
+    links: [
+      { id: 1, url: "", label: "Account" },
+      { id: 2, url: "", label: "Manage Deliveries" },
+      { id: 3, url: "", label: "Orders" },
+      { id: 4, url: "", label: "Payments" },
+    ],
+  },
+  {
+    id: 4,
+    title: "Resources",
+    links: [
+      { id: 1, url: "", label: "Free ebooks" },
+      { id: 2, url: "", label: "Development Tutorial" },
+      { id: 3, url: "", label: "How to Blog" },
+      { id: 4, url: "", label: "Youtube Playlist" },
+    ],
+  },
+];
+
+
+
+
 export const reviews = [
   {
     id: 1,
