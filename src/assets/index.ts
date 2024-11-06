@@ -47,6 +47,7 @@ import memberThree from "./images/memberThree.jpg"
 
 
 
+
 export { eyeIcon, eyeFalseIcon,cartIcon, hamburgerIcon,logo,accountIcon,searchIcon, notFound,deleteButton, addIcon, subtractIcon, categoryImageOne, categoryImageTwo, categoryImageThree, categoryImageFour, heroImage, heroBackgroundDesign,
     versace, zara,gucci,prada,calvin, filter,chevronRight,avatar,contact,instaIcon,twitterIcon,githubIcon,sustainability,innovation,memberOne,memberTwo,memberThree
 };
