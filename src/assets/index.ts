@@ -9,6 +9,10 @@ import deleteButton from "./icons/deleteButton.svg";
 import filter from "./icons/filter.svg";
 import chevronRight from "./icons/chevron-right.svg";
 
+import instaIcon from "./icons/insta.svg";
+import twitterIcon from "./icons/twitterIcon.svg";
+import githubIcon from "./icons/github.svg";
+
 import addIcon from "./icons/addIcon.svg";
 import subtractIcon from "./icons/subractIcon.svg";
 
@@ -32,9 +36,17 @@ import gucci from "./svgs/gucci.svg";
 import prada from "./svgs/prada.svg";
 import calvin from "./svgs/calvin.svg";
 
+import sustainability from "./images/sustainability.png";
+import innovation from "./images/innovation.png";
+import memberOne from "./images/memberone.jpg"
+import memberTwo from "./images/memberTwo.jpg"
+import memberThree from "./images/memberThree.jpg"
+
+
+
 
 
 
 export { eyeIcon, eyeFalseIcon,cartIcon, hamburgerIcon,logo,accountIcon,searchIcon, notFound,deleteButton, addIcon, subtractIcon, categoryImageOne, categoryImageTwo, categoryImageThree, categoryImageFour, heroImage, heroBackgroundDesign,
-    versace, zara,gucci,prada,calvin, filter,chevronRight,avatar,contact
+    versace, zara,gucci,prada,calvin, filter,chevronRight,avatar,contact,instaIcon,twitterIcon,githubIcon,sustainability,innovation,memberOne,memberTwo,memberThree
 };

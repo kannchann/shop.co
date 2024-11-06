@@ -147,7 +147,8 @@ const Login = () => {
             <span>Remember me</span>
           </label>
           <div className="cursor-pointer text-sm font-medium text-primary-700">
-            {/* <Link to="/forget-password">Forget me?</Link> */}Forget me?
+            {/* <Link to="/forget-password">Forget me?</Link> */}Forgot
+            Password?
           </div>
         </div>
         <Button

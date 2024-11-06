@@ -32,7 +32,7 @@ const Input: React.FC<InputProps> = ({
 
   return (
     <>
-      <div className="relative flex flex-col">
+      <div className="relative flex w-full flex-col">
         {labelText && (
           <label
             htmlFor={id}

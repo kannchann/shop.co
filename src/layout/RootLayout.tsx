@@ -6,6 +6,7 @@ import { getToken } from "../utils/token.utils";
 import axios from "axios";
 import Loader from "../components/ui/Loader";
 import { baseUrl } from "../utils/http/api";
+import Footer from "../components/Footer";
 
 type Props = {};
 
@@ -50,6 +51,7 @@ const RootLayout = (props: Props) => {
       <div>
         <Navbar />
         <Outlet />
+        <Footer />
       </div>
     </>
   );
