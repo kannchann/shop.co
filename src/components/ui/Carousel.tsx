@@ -10,8 +10,6 @@ const Carousel: React.FC = () => {
   const totalWidth = (itemWidth + gap) * totalItems;
 
   useEffect(() => {
-    console.log(totalWidth);
-
     const interval = setInterval(() => {
       setCurrentOffset((prevOffset) => {
         const newOffset = prevOffset + 1;

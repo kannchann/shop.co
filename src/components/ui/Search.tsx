@@ -2,13 +2,9 @@ import { useState } from "react";
 import { searchIcon } from "../../assets";
 import Modal from "./Modal";
 
-interface AutocompleteSearchBarProps {
-  query: string;
-  setQuery: (value: string) => void;
-}
-
-const Search: React.FC<AutocompleteSearchBarProps> = ({ query, setQuery }) => {
+const Search: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [query, setQuery] = useState("");
   return (
     <>
       <div className="flex rounded-full md:mx-7 md:flex-grow md:bg-primary-100 md:px-4 md:py-3 lg:mx-10">

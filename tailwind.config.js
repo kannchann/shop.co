@@ -14,6 +14,7 @@ export default {
     },
     extend: {
       backgroundImage: {
+        hero: "url(src/assets/images/heroImage.svg)",
         contact: "url('src/assets/images/contact.png')",
       },
 

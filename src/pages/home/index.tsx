@@ -9,8 +9,8 @@ const Home = () => {
     <>
       <div className="bg-primary-100">
         <div className="container">
-          <div className="back items-center md:flex">
-            <div className="grid w-full space-y-8 md:block md:w-1/2">
+          <div className="items-center md:flex">
+            <div className="grid w-full space-y-8 py-10 md:block xl:w-1/2">
               <h1 className="text-4xl md:text-5xl lg:text-6xl lg:leading-[64px]">
                 FIND CLOTHES THAT MATCHES YOUR STYLE
               </h1>
@@ -20,7 +20,7 @@ const Home = () => {
                 your sense of style.
               </p>
               <Button buttonText="Shop Now" />
-              <div className="flex space-x-14 pt-8">
+              <div className="flex flex-wrap justify-start gap-10 pt-8">
                 <div className="min-w-fit">
                   <p className="font-satoshiBold text-2xl lg:text-4xl">200+</p>
                   <p className="text-xs opacity-60 lg:text-base">
@@ -49,13 +49,17 @@ const Home = () => {
               <img
                 src={heroBackgroundDesign}
                 alt=""
-                className="absolute left-10 top-[40%] min-w-[44px] max-w-[56px]"
+                className="absolute left-10 top-[40%] block min-w-[44px] max-w-[56px] md:hidden xl:block"
               />
-              <img src={heroImage} alt="" className="object-cover" />
+              <img
+                src={heroImage}
+                alt=""
+                className="block object-cover md:hidden xl:block"
+              />
               <img
                 src={heroBackgroundDesign}
                 alt=""
-                className="absolute right-10 top-[10%] min-w-[76px] max-w-[104px]"
+                className="absolute right-10 top-[10%] block min-w-[76px] max-w-[104px] md:hidden xl:block"
               />
             </div>
           </div>

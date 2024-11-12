@@ -9,6 +9,7 @@ import { cartIcon, logo, searchIcon } from "../assets";
 import { accountIcon } from "../assets";
 import DropDown from "./ui/DropDown";
 import Search from "./ui/Search";
+import { useCart } from "../provider/CartContext";
 
 type Props = {};
 
@@ -35,6 +36,8 @@ const Navbar = (props: Props) => {
     throw new Error("somthing went wrong");
   }
   const { isAuthenticated, logout } = userContext;
+
+  const { cartItemCount } = useCart();
 
   return (
     <nav className="">
@@ -64,8 +67,11 @@ const Navbar = (props: Props) => {
             <div className="flex items-center gap-3">
               <Search />
               <Link to="/orders" className="flex items-center">
-                <button>
+                <button className="relative">
                   <img src={cartIcon} alt="Cart" className="h-6 w-6" />
+                  <div className="absolute -right-2 -top-5 h-6 w-6 rounded-full bg-red-700 font-satoshiMedium text-white">
+                    {cartItemCount}
+                  </div>
                 </button>
               </Link>
 

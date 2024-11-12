@@ -1,13 +1,27 @@
-import React from "react";
 import { footerItems } from "../utils/constants";
 import { githubIcon, instaIcon, logo, twitterIcon } from "../assets";
 import SocialIcon from "./ui/SocialIcon";
+import { Link } from "react-router-dom";
 
-type Props = {};
+const icons = [
+  {
+    id: 1,
+    icon: instaIcon,
+    url: "https://www.instagram.com/",
+  },
+  {
+    id: 2,
+    icon: githubIcon,
+    url: "https://www.github.com/",
+  },
+  {
+    id: 3,
+    icon: twitterIcon,
+    url: "https://x.com/",
+  },
+];
 
-const icons = [instaIcon, githubIcon, twitterIcon];
-
-const Footer = (props: Props) => {
+const Footer = () => {
   const date = new Date();
   return (
     <div className="mt-20 bg-primary-200">
@@ -21,18 +35,28 @@ const Footer = (props: Props) => {
             </p>
             <div className="flex space-x-3">
               {icons.map((item) => (
-                <SocialIcon activeIcon={item} key={item} />
+                <SocialIcon
+                  activeIcon={item.icon}
+                  key={item.id}
+                  link={item.url}
+                />
               ))}
             </div>
           </div>
           {footerItems.map((items) => (
-            <div>
+            <div key={items.id}>
               <h3 className="pb-6 font-satoshiMedium leading-5 tracking-[3px]">
                 {items.title.toUpperCase()}
               </h3>
               <ul>
                 {items.links.map((link) => (
-                  <p className="pb-3">{link.label}</p>
+                  <Link
+                    to="/"
+                    key={link.id}
+                    className="block pb-3 hover:text-black-700"
+                  >
+                    {link.label}
+                  </Link>
                 ))}
               </ul>
             </div>

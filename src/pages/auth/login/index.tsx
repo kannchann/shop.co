@@ -10,6 +10,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../../provider/AuthContext";
 import WarningBanner from "../../../components/ui/WarningBanner";
 import { baseUrl } from "../../../utils/http/api";
+import { useCart } from "../../../provider/CartContext";
 
 // import { Link } from "react-router-dom";
 const Login = () => {
@@ -75,6 +76,7 @@ const Login = () => {
         console.log(res);
         if (res.data.message === "User logged in successfully") {
           const response = res.data.data;
+
           setToken(response.accessToken);
         }
       })

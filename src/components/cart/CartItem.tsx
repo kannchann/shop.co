@@ -23,7 +23,7 @@ const CartItem: React.FC<CartProducts> = ({
           <img
             src={productDetails.mainImage.url}
             alt="cart product image"
-            className="w-full rounded-md object-contain"
+            className="h-full w-full rounded-md object-cover"
           />
         </div>
         <div>

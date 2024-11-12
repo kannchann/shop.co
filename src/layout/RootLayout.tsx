@@ -7,6 +7,7 @@ import axios from "axios";
 import Loader from "../components/ui/Loader";
 import { baseUrl } from "../utils/http/api";
 import Footer from "../components/Footer";
+import { useCart } from "../provider/CartContext";
 
 type Props = {};
 
@@ -16,14 +17,31 @@ const RootLayout = (props: Props) => {
     throw new Error("somthing went wrong");
   }
   const { setCredentials, isAuthenticating, isLoading } = userContext;
+  const { setCartItemCount } = useCart();
 
   useEffect(() => {
-    if (!!getToken()) {
+    if (getToken()) {
       getUser();
+      getCart();
     } else {
       isLoading(false);
     }
   }, []);
+
+  const getCart = () => {
+    axios
+      .get(`${baseUrl}/ecommerce/cart`, {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
+      })
+      .then((res) => {
+        setCartItemCount(res.data.data.items.length);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  };
 
   const getUser = () => {
     axios
@@ -43,7 +61,7 @@ const RootLayout = (props: Props) => {
   };
 
   if (isAuthenticating) {
-    return <Loader size={50} />;
+    return <Loader />;
   }
 
   return (

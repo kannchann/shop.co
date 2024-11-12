@@ -10,6 +10,7 @@ import { handleDeleteItemFromCart } from "../../../services/ProductServices";
 import ConfirmationModal from "../../../components/ConfirmationModal";
 import { baseUrl } from "../../../utils/http/api";
 import Button from "../../../components/ui/Button";
+import { useCart } from "../../../provider/CartContext";
 
 interface Item {
   coupon: string;
@@ -27,6 +28,8 @@ interface CartData {
 }
 
 const Orders: React.FC = () => {
+  const { setCartItemCount } = useCart();
+
   const [isLoading, setIsLoading] = useState(false);
   const [cartData, setCartData] = useState<CartData | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>();
@@ -40,6 +43,7 @@ const Orders: React.FC = () => {
       })
       .then((res) => {
         setCartData(res.data.data);
+        setCartItemCount(res.data.data.items.length);
       })
       .catch((err) => {
         console.log(err.response);
@@ -69,7 +73,7 @@ const Orders: React.FC = () => {
   }, []);
 
   if (isLoading) {
-    return <Loader size={80} />;
+    return <Loader />;
   }
 
   return (

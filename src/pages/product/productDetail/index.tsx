@@ -12,6 +12,7 @@ import QuantityCounter from "../../../components/ui/QuantityCounter";
 import Loader from "../../../components/ui/Loader";
 import { Product } from "../../../@types/product";
 import { baseUrl } from "../../../utils/http/api";
+import { useCart } from "../../../provider/CartContext";
 
 const ProductDetail: React.FC = () => {
   const [product, setProduct] = useState<Product | null>(null);
@@ -28,6 +29,7 @@ const ProductDetail: React.FC = () => {
     throw new Error("somthing went wrong");
   }
   const { isAuthenticated } = userContext;
+  const { setCartItemCount } = useCart();
 
   const navigate = useNavigate();
 
@@ -53,6 +55,9 @@ const ProductDetail: React.FC = () => {
               },
             },
           )
+          .then((res) => {
+            setCartItemCount(res.data.data.items.length);
+          })
           .catch((err) => console.log(err.response))
       : navigate("/login");
   };
@@ -87,7 +92,7 @@ const ProductDetail: React.FC = () => {
   };
 
   if (isLoading) {
-    return <Loader size={80} />;
+    return <Loader />;
   }
 
   if (!product || !productID) {
